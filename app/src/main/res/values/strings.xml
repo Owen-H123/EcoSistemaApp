@@ -137,5 +137,32 @@
         <item>Memoria de la empresa que une conocimiento, documentos, procesos, reuniones y decisiones, y crece con información validada.</item>
     </string-array>
 
+    <!-- Nosotros. Fuente: segundo cerebro, wiki/hannah/empresa/hannah-lab.md -->
+    <string name="nosotros_intro">Hannah Lab es la marca comercial de Hannah Produce S.A.C., empresa peruana con oficina en San Isidro, Lima.</string>
+    <string name="nosotros_como_trabajamos">Cómo trabajamos</string>
+    <string name="nosotros_como_texto">Como un médico de cabecera y no como una farmacia: conocemos a la empresa, la revisamos cada cierto tiempo y ajustamos el tratamiento. Es un acompañamiento tecnológico continuo, mes a mes, con reportes de avance.</string>
+    <string name="nosotros_fortalezas">En qué somos fuertes</string>
+    <string name="nosotros_valores">Nuestros valores</string>
+    <string-array name="fortalezas_titulos">
+        <item>Inteligencia artificial aplicada</item>
+        <item>Integraciones y arquitectura</item>
+    </string-array>
+    <string-array name="fortalezas_descripciones">
+        <item>Bases con lo que sabe la empresa que la IA consulta antes de responder, agentes y automatización de flujos.</item>
+        <item>Conectar sistemas que hoy no se hablan, por ejemplo Odoo con un sistema de despachos.</item>
+    </string-array>
+    <string-array name="valores_titulos">
+        <item>Soberanía tecnológica del cliente</item>
+        <item>Transparencia y educación</item>
+        <item>Rigor de ingeniería</item>
+        <item>Acompañamiento continuo</item>
+    </string-array>
+    <string-array name="valores_descripciones">
+        <item>El sistema, los datos y el conocimiento quedan con el cliente. No lo amarramos.</item>
+        <item>Explicamos qué hacemos y por qué, con palabras que entienda alguien que no es técnico.</item>
+        <item>Lo que decimos se puede medir y comprobar. Cifra sin fuente no sale.</item>
+        <item>Estamos mes a mes, no solo el día de la entrega.</item>
+    </string-array>
+
     <string name="placeholder_parrafo">Contenido en construcción.</string>
 </resources>
