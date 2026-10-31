@@ -164,5 +164,26 @@
         <item>Estamos mes a mes, no solo el día de la entrega.</item>
     </string-array>
 
+    <!-- Contactos. Datos públicos de contacto (wiki/hannah/empresa/hannah-lab.md) -->
+    <string name="contactos_intro">Cuéntanos qué necesita tu empresa y te responderemos.</string>
+    <string name="contacto_direccion_label">Oficina</string>
+    <string name="contacto_direccion">Calle Manuel Fuentes 830, San Isidro, Lima</string>
+    <string name="contacto_correo_label">Correo</string>
+    <string name="contacto_correo" translatable="false">contacto@hannahlab.com</string>
+    <string name="contacto_web_label">Web</string>
+    <string name="contacto_web" translatable="false">hannahlab.com</string>
+    <string name="contacto_formulario">Escríbenos</string>
+    <string name="contacto_nombre">Nombre</string>
+    <string name="contacto_telefono">Teléfono (opcional)</string>
+    <string name="contacto_asunto">Asunto</string>
+    <string name="contacto_mensaje">Mensaje</string>
+    <string name="contacto_enviar">Enviar</string>
+    <string name="contacto_enviar_correo">Enviar por correo</string>
+    <string name="contacto_guardado">Mensaje enviado correctamente</string>
+    <string name="contacto_registrados">Mensajes enviados desde este dispositivo: %1$d</string>
+    <string name="contacto_sin_app">No hay una app instalada para abrir esto</string>
+    <string name="error_telefono">Teléfono no válido</string>
+    <string name="error_mensaje_corto">Escribe al menos 10 caracteres</string>
+
     <string name="placeholder_parrafo">Contenido en construcción.</string>
 </resources>
