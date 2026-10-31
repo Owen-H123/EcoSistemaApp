@@ -5,10 +5,14 @@ import android.os.Bundle
 import android.util.Patterns
 import android.view.View
 import androidx.fragment.app.Fragment
+import androidx.lifecycle.lifecycleScope
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.databinding.FragmentLoginBinding
-import com.hannahlab.ecoapp.ui.planilla.PlanillaActivity
+import com.hannahlab.ecoapp.ecoApp
+import com.hannahlab.ecoapp.ui.panel.PanelActivity
 import com.hannahlab.ecoapp.ui.recuperar.RecuperarContrasenaActivity
+import com.hannahlab.ecoapp.util.Seguridad
+import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
 
@@ -19,14 +23,28 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         super.onViewCreated(view, savedInstanceState)
         _binding = FragmentLoginBinding.bind(view)
 
-        binding.btnIngresar.setOnClickListener {
-            if (isFormValid()) {
-                // TODO: validar credenciales contra Room cuando se defina el login
-                startActivity(Intent(requireContext(), PlanillaActivity::class.java))
-            }
-        }
+        binding.btnIngresar.setOnClickListener { if (isFormValid()) iniciarSesion() }
         binding.tvOlvide.setOnClickListener {
             startActivity(Intent(requireContext(), RecuperarContrasenaActivity::class.java))
+        }
+    }
+
+    private fun iniciarSesion() {
+        val app = requireContext().ecoApp
+        val correo = binding.etCorreo.text.toString().trim().lowercase()
+        val contrasena = binding.etContrasena.text.toString()
+
+        viewLifecycleOwner.lifecycleScope.launch {
+            val usuario = app.database.usuarioDao().findByCorreo(correo)
+            if (usuario == null || !usuario.activo || usuario.contrasenaHash != Seguridad.hash(contrasena)) {
+                binding.tilContrasena.error = getString(R.string.login_error)
+                return@launch
+            }
+            app.session.iniciar(usuario)
+            startActivity(
+                Intent(requireContext(), PanelActivity::class.java)
+                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
+            )
         }
     }
 
@@ -36,8 +54,7 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
 
         binding.tilCorreo.error = when {
             correo.isEmpty() -> getString(R.string.error_obligatorio)
-            correo.contains('@') && !Patterns.EMAIL_ADDRESS.matcher(correo).matches() ->
-                getString(R.string.error_correo)
+            !Patterns.EMAIL_ADDRESS.matcher(correo).matches() -> getString(R.string.error_correo)
             else -> null
         }
         binding.tilContrasena.error =
