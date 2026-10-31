@@ -1,9 +1,14 @@
 <resources>
-    <!-- Paleta Hannah: negro + verde. Ajustar el verde al tono oficial de marca. -->
-    <color name="hannah_negro">#FF0A0A0A</color>
-    <color name="hannah_verde">#FF22C55E</color>
-    <color name="hannah_verde_oscuro">#FF15803D</color>
+    <!-- Paleta del ecosistema Hannah (apps/frontend/src/styles.css, tokens oklch convertidos) -->
+    <color name="eco_lima">#FF9AE600</color>          <!-- primary -->
+    <color name="eco_lima_oscuro">#FF5EA500</color>   <!-- sidebar-primary -->
+    <color name="eco_lima_texto">#FF3D6300</color>    <!-- primary-foreground -->
+    <color name="eco_lima_suave">#FFF7FEE7</color>    <!-- sidebar-primary-foreground -->
+    <color name="eco_negro">#FF0A0A0A</color>         <!-- foreground -->
+    <color name="eco_fondo">#FFFFFFFF</color>         <!-- background -->
+    <color name="eco_superficie">#FFF5F5F5</color>    <!-- muted -->
+    <color name="eco_borde">#FFE5E5E5</color>         <!-- border -->
+    <color name="eco_texto">#FF0A0A0A</color>
+    <color name="eco_texto_suave">#FF737373</color>   <!-- muted-foreground -->
     <color name="blanco">#FFFFFFFF</color>
-    <color name="gris_texto">#FF4B5563</color>
-    <color name="fondo">#FFF9FAFB</color>
 </resources>

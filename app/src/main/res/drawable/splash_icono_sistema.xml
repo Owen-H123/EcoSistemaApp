@@ -1,0 +1,7 @@
+<!-- Icono del splash del sistema (Android 12+): isotipo dentro del círculo visible -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/logo_hannah_oscuro"
+    android:insetLeft="30%"
+    android:insetRight="30%"
+    android:insetTop="28%"
+    android:insetBottom="28%" />

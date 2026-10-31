@@ -7,15 +7,15 @@ import android.os.Handler
 import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.hannahlab.ecoapp.databinding.ActivitySplashBinding
-import com.hannahlab.ecoapp.ui.main.MainActivity
+import com.hannahlab.ecoapp.ui.welcome.WelcomeActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
     private val handler = Handler(Looper.getMainLooper())
-    private val goToMain = Runnable {
-        startActivity(Intent(this, MainActivity::class.java))
+    private val goToWelcome = Runnable {
+        startActivity(Intent(this, WelcomeActivity::class.java))
         finish()
     }
 
@@ -23,11 +23,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        handler.postDelayed(goToMain, SPLASH_DURATION_MS)
+        handler.postDelayed(goToWelcome, SPLASH_DURATION_MS)
     }
 
     override fun onDestroy() {
-        handler.removeCallbacks(goToMain)
+        handler.removeCallbacks(goToWelcome)
         super.onDestroy()
     }
 

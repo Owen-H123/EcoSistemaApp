@@ -48,9 +48,14 @@ class MainActivity : AppCompatActivity() {
         })
 
         if (savedInstanceState == null) {
-            binding.navView.setCheckedItem(R.id.nav_inicio)
-            showSection(R.id.nav_inicio)
+            val initial = if (intent.getBooleanExtra(EXTRA_OPEN_LOGIN, false)) R.id.nav_login else R.id.nav_inicio
+            binding.navView.setCheckedItem(initial)
+            showSection(initial)
         }
+    }
+
+    companion object {
+        const val EXTRA_OPEN_LOGIN = "open_login"
     }
 
     private fun showSection(itemId: Int) {

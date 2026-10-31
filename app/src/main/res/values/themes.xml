@@ -1,30 +1,113 @@
 <resources>
 
+    <!-- Tema base: paleta del ecosistema Hannah + Inter en toda la app -->
     <style name="Theme.EcoApp" parent="Theme.Material3.Light.NoActionBar">
-        <item name="colorPrimary">@color/hannah_verde</item>
-        <item name="colorPrimaryDark">@color/hannah_negro</item>
-        <item name="colorSecondary">@color/hannah_verde_oscuro</item>
-        <item name="android:statusBarColor">@color/hannah_negro</item>
-        <item name="android:windowBackground">@color/fondo</item>
+        <item name="colorPrimary">@color/eco_lima</item>
+        <item name="colorOnPrimary">@color/eco_lima_texto</item>
+        <item name="colorSecondary">@color/eco_lima_oscuro</item>
+        <item name="colorControlActivated">@color/eco_lima_oscuro</item>
+        <item name="android:textColorHint">@color/eco_texto_suave</item>
+        <item name="android:fontFamily">@font/inter</item>
+        <item name="android:statusBarColor">@color/eco_negro</item>
+        <item name="android:windowLightStatusBar">false</item>
+        <item name="android:windowBackground">@color/eco_fondo</item>
     </style>
 
     <style name="Theme.EcoApp.Splash">
-        <item name="android:windowBackground">@color/hannah_negro</item>
-        <item name="android:statusBarColor">@color/hannah_negro</item>
-        <item name="android:navigationBarColor">@color/hannah_negro</item>
+        <item name="android:windowBackground">@color/eco_negro</item>
+        <item name="android:navigationBarColor">@color/eco_negro</item>
+    </style>
+
+    <style name="Theme.EcoApp.Welcome">
+        <item name="android:statusBarColor">@color/eco_fondo</item>
+        <item name="android:windowLightStatusBar">true</item>
+        <item name="android:navigationBarColor">@color/eco_fondo</item>
     </style>
 
     <!-- Tipografía requerida: título 28sp, párrafo 24sp con interlineado 30sp -->
     <style name="TextoTitulo">
         <item name="android:textSize">28sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">@color/hannah_negro</item>
+        <item name="android:fontFamily">@font/oswald_400</item>
+        <item name="android:letterSpacing">0</item>
+        <item name="android:textColor">@color/eco_texto</item>
+    </style>
+
+    <style name="TextoTitulo.Claro">
+        <item name="android:textColor">@color/blanco</item>
     </style>
 
     <style name="TextoParrafo">
         <item name="android:textSize">24sp</item>
         <item name="lineHeight">30sp</item>
-        <item name="android:textColor">@color/gris_texto</item>
+        <item name="android:fontFamily">@font/inter_400</item>
+        <item name="android:textColor">@color/eco_texto_suave</item>
+    </style>
+
+    <!-- Nombre de marca (logotipo), más grande que un título normal -->
+    <style name="TextoMarca" parent="TextoTitulo">
+        <item name="android:textSize">56sp</item>
+        <item name="android:fontFamily">@font/oswald_300</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">-0.01</item>
+    </style>
+
+    <style name="EtiquetaCampo">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">20dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/oswald_500</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:textColor">@color/eco_texto</item>
+    </style>
+
+    <!-- Campo redondeado relleno, con borde fino como los inputs del frontend -->
+    <style name="CampoEco" parent="Widget.Material3.TextInputLayout.OutlinedBox">
+        <item name="android:layout_width">match_parent</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="boxBackgroundColor">@color/eco_superficie</item>
+        <item name="boxStrokeColor">@color/eco_lima_oscuro</item>
+        <item name="boxStrokeWidth">1dp</item>
+        <item name="boxStrokeWidthFocused">2dp</item>
+        <item name="hintEnabled">false</item>
+        <item name="boxCornerRadiusTopStart">6dp</item>
+        <item name="boxCornerRadiusTopEnd">6dp</item>
+        <item name="boxCornerRadiusBottomStart">6dp</item>
+        <item name="boxCornerRadiusBottomEnd">6dp</item>
+        <item name="endIconTint">@color/eco_texto_suave</item>
+    </style>
+
+    <style name="EnlaceEco">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_gravity">center_horizontal</item>
+        <item name="android:padding">8dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/oswald_500</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textColor">@color/eco_lima_oscuro</item>
+    </style>
+
+    <style name="BotonPrimario" parent="Widget.Material3.Button">
+        <item name="android:layout_width">240dp</item>
+        <item name="android:layout_height">56dp</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:fontFamily">@font/oswald_500</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.05</item>
+        <item name="android:textColor">@color/eco_lima_texto</item>
+        <item name="backgroundTint">@color/eco_lima</item>
+        <item name="cornerRadius">4dp</item>
+    </style>
+
+    <style name="BotonSecundario" parent="BotonPrimario">
+        <item name="android:textColor">@color/eco_texto</item>
+        <item name="backgroundTint">@color/eco_superficie</item>
+        <item name="strokeColor">@color/eco_borde</item>
+        <item name="strokeWidth">1dp</item>
     </style>
 
 </resources>

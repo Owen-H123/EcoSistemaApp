@@ -1,0 +1,10 @@
+<resources>
+    <!-- Android 12+: el sistema muestra su propio splash antes del nuestro; lo igualamos al diseño -->
+    <style name="Theme.EcoApp.Splash">
+        <item name="android:windowBackground">@color/eco_negro</item>
+        <item name="android:navigationBarColor">@color/eco_negro</item>
+        <item name="android:windowSplashScreenBackground">@color/eco_negro</item>
+        <item name="android:windowSplashScreenAnimatedIcon">@drawable/splash_icono_sistema</item>
+        <item name="android:windowSplashScreenIconBackgroundColor">@color/eco_negro</item>
+    </style>
+</resources>

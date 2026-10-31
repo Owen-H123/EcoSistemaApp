@@ -1,0 +1,4 @@
+<!-- Isotipo oficial de Hannah dentro de la zona segura del icono adaptativo -->
+<inset xmlns:android="http://schemas.android.com/apk/res/android"
+    android:drawable="@drawable/logo_hannah"
+    android:inset="28dp" />

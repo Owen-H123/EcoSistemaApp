@@ -1,0 +1,94 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/eco_negro"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Cabecera verde -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="vertical"
+            android:paddingTop="48dp"
+            android:paddingBottom="48dp">
+
+            <ImageView
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:contentDescription="@string/marca"
+                android:src="@drawable/logo_hannah_oscuro" />
+
+            <TextView
+                style="@style/TextoTitulo.Claro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/recuperar_titulo" />
+        </LinearLayout>
+
+        <!-- Tarjeta menta -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card_superior"
+            android:orientation="vertical"
+            android:paddingStart="32dp"
+            android:paddingTop="48dp"
+            android:paddingEnd="32dp"
+            android:paddingBottom="32dp">
+
+            <TextView
+                style="@style/TextoTitulo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="@string/recuperar_subtitulo" />
+
+            <TextView
+                style="@style/TextoParrafo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/recuperar_texto" />
+
+            <TextView
+                style="@style/EtiquetaCampo"
+                android:layout_marginTop="32dp"
+                android:text="@string/recuperar_correo" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_correo"
+                style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_correo_hint"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_siguiente"
+                style="@style/BotonPrimario"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="40dp"
+                android:text="@string/recuperar_siguiente" />
+
+            <TextView
+                android:id="@+id/tv_volver"
+                style="@style/EnlaceEco"
+                android:layout_marginTop="16dp"
+                android:text="@string/recuperar_volver" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

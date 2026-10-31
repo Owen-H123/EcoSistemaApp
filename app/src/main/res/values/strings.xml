@@ -1,7 +1,12 @@
 <resources>
     <string name="app_name">EcoApp Hannah</string>
     <string name="empresa_nombre">Hannah Lab</string>
-    <string name="empresa_lema">Tecnología a la medida de tu negocio</string>
+    <string name="marca">EcoApp</string>
+    <string name="empresa_lema">El ecosistema de Hannah Lab en tu bolsillo</string>
+
+    <string name="welcome_ingresar">Ingresar</string>
+    <string name="welcome_iniciar_sesion">Iniciar sesión</string>
+    <string name="welcome_olvide">¿Olvidaste tu contraseña?</string>
 
     <string name="drawer_open">Abrir menú</string>
     <string name="drawer_close">Cerrar menú</string>
@@ -16,6 +21,23 @@
     <string name="contactos_titulo">Contáctanos</string>
     <string name="login_titulo">Iniciar sesión</string>
     <string name="planilla_titulo">Planilla por horas</string>
+
+    <string name="login_bienvenido">Bienvenido a EcoApp</string>
+    <string name="login_correo">Usuario o correo</string>
+    <string name="login_correo_hint">ejemplo@hannahlab.com</string>
+    <string name="login_contrasena">Contraseña</string>
+    <string name="login_ingresar">Ingresar</string>
+    <string name="login_aviso">Las cuentas las crea el administrador de Hannah Lab.</string>
+    <string name="error_obligatorio">Campo obligatorio</string>
+    <string name="error_correo">Correo no válido</string>
+
+    <string name="recuperar_titulo">Recuperar contraseña</string>
+    <string name="recuperar_subtitulo">¿Olvidaste tu contraseña?</string>
+    <string name="recuperar_texto">Ingresa tu correo y te enviaremos las indicaciones para restablecerla.</string>
+    <string name="recuperar_correo">Correo electrónico</string>
+    <string name="recuperar_siguiente">Siguiente</string>
+    <string name="recuperar_volver">Volver al inicio de sesión</string>
+    <string name="recuperar_enviado">Si el correo está registrado, recibirás las indicaciones</string>
 
     <string name="placeholder_parrafo">Contenido en construcción.</string>
 </resources>

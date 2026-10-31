@@ -2,7 +2,7 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="176dp"
-    android:background="@color/hannah_negro"
+    android:background="@color/eco_negro"
     android:gravity="bottom"
     android:orientation="vertical"
     android:padding="16dp">
@@ -11,7 +11,7 @@
         android:layout_width="64dp"
         android:layout_height="64dp"
         android:contentDescription="@string/empresa_nombre"
-        android:src="@drawable/ic_launcher_foreground" />
+        android:src="@drawable/logo_hannah_oscuro" />
 
     <TextView
         android:layout_width="wrap_content"
@@ -25,6 +25,6 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empresa_lema"
-        android:textColor="@color/hannah_verde"
+        android:textColor="@color/eco_lima"
         android:textSize="14sp" />
 </LinearLayout>

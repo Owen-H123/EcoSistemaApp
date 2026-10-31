@@ -22,6 +22,12 @@
         </activity>
 
         <activity
+            android:name=".ui.welcome.WelcomeActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.EcoApp.Welcome" />
+
+        <activity
             android:name=".ui.main.MainActivity"
             android:exported="false"
             android:screenOrientation="portrait" />
@@ -31,6 +37,11 @@
             android:exported="false"
             android:parentActivityName=".ui.main.MainActivity"
             android:screenOrientation="portrait" />
+        <activity
+            android:name=".ui.recuperar.RecuperarContrasenaActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.EcoApp.Splash" />
     </application>
 
 </manifest>
