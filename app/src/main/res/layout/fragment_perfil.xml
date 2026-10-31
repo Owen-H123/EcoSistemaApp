@@ -1,0 +1,92 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/eco_negro"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <TextView
+                android:id="@+id/tv_inicial"
+                style="@style/Avatar"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/tv_nombre"
+                style="@style/TextoTitulo.Claro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tv_rol"
+                style="@style/EtiquetaPanel"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/eco_lima" />
+
+            <TextView
+                android:id="@+id/tv_correo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/eco_texto_claro"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card_superior"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tarjeta_blanca"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <TextView style="@style/EtiquetaPanel" android:text="@string/perfil_cargo" />
+
+                <TextView android:id="@+id/tv_cargo" style="@style/ValorTarjeta" android:textSize="18sp" />
+
+                <TextView style="@style/EtiquetaPanel" android:layout_marginTop="14dp" android:text="@string/perfil_meta" />
+
+                <TextView android:id="@+id/tv_meta" style="@style/ValorTarjeta" android:textSize="18sp" />
+
+                <TextView style="@style/EtiquetaPanel" android:layout_marginTop="14dp" android:text="@string/perfil_tarifa" />
+
+                <TextView android:id="@+id/tv_tarifa" style="@style/ValorTarjeta" android:textSize="18sp" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_nuevo_trabajador"
+                style="@style/BotonPrimario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:text="@string/perfil_nuevo_trabajador" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_cerrar_sesion"
+                style="@style/BotonSecundario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="12dp"
+                android:text="@string/perfil_cerrar_sesion" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

@@ -1,22 +1,176 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:fitsSystemWindows="true"
-    android:orientation="vertical">
+    android:background="@color/eco_negro"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
 
-    <com.google.android.material.appbar.MaterialToolbar
-        android:id="@+id/toolbar"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="?attr/actionBarSize"
-        android:background="@color/eco_negro"
-        app:navigationIconTint="@color/blanco"
-        app:titleTextColor="@color/blanco" />
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
 
-    <androidx.recyclerview.widget.RecyclerView
-        android:id="@+id/rv_trabajadores"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:padding="16dp" />
-</LinearLayout>
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/eco_negro"
+            app:navigationIconTint="@color/blanco"
+            app:titleTextColor="@color/blanco" />
+
+        <!-- Cabecera: trabajador -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal"
+            android:paddingHorizontal="24dp"
+            android:paddingBottom="28dp">
+
+            <TextView
+                android:id="@+id/tv_inicial"
+                style="@style/Avatar"
+                android:layout_width="56dp"
+                android:layout_height="56dp"
+                android:textSize="24sp" />
+
+            <LinearLayout
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_weight="1"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/tv_nombre"
+                    style="@style/TextoTitulo.Claro"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content" />
+
+                <TextView
+                    android:id="@+id/tv_cargo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textColor="@color/eco_texto_claro"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/tv_mes"
+                    style="@style/EtiquetaPanel"
+                    android:textColor="@color/eco_lima" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <!-- Formulario de salario -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card_superior"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView style="@style/EtiquetaCampo" android:layout_marginTop="0dp" android:text="@string/planilla_tarifa" />
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/til_tarifa" style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_tarifa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView style="@style/EtiquetaCampo" android:text="@string/planilla_horas" />
+
+            <com.google.android.material.textfield.TextInputLayout style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_horas"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:enabled="false"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_calcular"
+                style="@style/BotonSecundario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="@string/planilla_calcular" />
+
+            <!-- Resultado -->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_tarjeta_lima"
+                android:orientation="vertical"
+                android:padding="20dp">
+
+                <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/planilla_bruto"
+                        android:textColor="@color/eco_texto_suave"
+                        android:textSize="16sp" />
+
+                    <TextView android:id="@+id/tv_bruto" style="@style/ValorTarjeta" android:textSize="18sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:orientation="horizontal">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/planilla_descuento"
+                        android:textColor="@color/eco_texto_suave"
+                        android:textSize="16sp" />
+
+                    <TextView android:id="@+id/tv_descuento" style="@style/ValorTarjeta" android:textSize="18sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="1dp"
+                    android:layout_marginVertical="14dp"
+                    android:background="@color/eco_borde" />
+
+                <TextView style="@style/EtiquetaPanel" android:text="@string/planilla_neto" android:textColor="@color/eco_texto" />
+
+                <TextView
+                    android:id="@+id/tv_neto"
+                    style="@style/ValorTarjeta"
+                    android:textColor="@color/eco_lima_texto"
+                    android:textSize="36sp" />
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_guardar"
+                style="@style/BotonPrimario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="20dp"
+                android:text="@string/planilla_guardar" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="@string/planilla_nota"
+                android:textColor="@color/eco_texto_suave"
+                android:textSize="12sp" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>

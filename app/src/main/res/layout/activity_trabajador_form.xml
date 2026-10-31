@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/eco_negro"
+    android:fillViewport="true"
+    android:fitsSystemWindows="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/toolbar"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize"
+            android:background="@color/eco_negro"
+            app:navigationIconTint="@color/blanco"
+            app:titleTextColor="@color/blanco" />
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginTop="16dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card_superior"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView style="@style/EtiquetaCampo" android:layout_marginTop="8dp" android:text="@string/trabajador_nombre" />
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/til_nombre" style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_nombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPersonName|textCapWords"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView style="@style/EtiquetaCampo" android:text="@string/login_correo" />
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/til_correo" style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_correo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:hint="@string/login_correo_hint"
+                    android:inputType="textEmailAddress"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView style="@style/EtiquetaCampo" android:text="@string/login_contrasena" />
+
+            <com.google.android.material.textfield.TextInputLayout
+                android:id="@+id/til_contrasena"
+                style="@style/CampoEco"
+                app:endIconMode="password_toggle">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_contrasena"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textPassword"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView style="@style/EtiquetaCampo" android:text="@string/trabajador_cargo" />
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/til_cargo" style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_cargo"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="textCapSentences"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView style="@style/EtiquetaCampo" android:text="@string/planilla_tarifa" />
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/til_tarifa" style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_tarifa"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <TextView style="@style/EtiquetaCampo" android:text="@string/trabajador_meta" />
+
+            <com.google.android.material.textfield.TextInputLayout android:id="@+id/til_meta" style="@style/CampoEco">
+
+                <com.google.android.material.textfield.TextInputEditText
+                    android:id="@+id/et_meta"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:inputType="numberDecimal"
+                    android:text="160"
+                    android:textColor="@color/eco_texto" />
+            </com.google.android.material.textfield.TextInputLayout>
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_guardar"
+                style="@style/BotonPrimario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="32dp"
+                android:text="@string/trabajador_guardar" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
