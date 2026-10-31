@@ -22,6 +22,8 @@ class MainActivity : AppCompatActivity() {
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
+        // El DrawerLayout pinta la barra de estado con el color primario (lima); la dejamos negra
+        binding.drawerLayout.setStatusBarBackgroundColor(getColor(R.color.eco_negro))
 
         val toggle = ActionBarDrawerToggle(
             this, binding.drawerLayout, binding.toolbar,
@@ -56,6 +58,12 @@ class MainActivity : AppCompatActivity() {
 
     companion object {
         const val EXTRA_OPEN_LOGIN = "open_login"
+    }
+
+    /** Permite que un fragment lleve a otra sección del drawer (ej. Inicio → Contactos). */
+    fun navigateTo(itemId: Int) {
+        binding.navView.setCheckedItem(itemId)
+        showSection(itemId)
     }
 
     private fun showSection(itemId: Int) {

@@ -1,25 +1,103 @@
 <?xml version="1.0" encoding="utf-8"?>
 <ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:background="@color/eco_negro"
+    android:fillViewport="true">
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:orientation="vertical"
-        android:padding="16dp">
+        android:orientation="vertical">
 
-        <TextView
-            style="@style/TextoTitulo"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/inicio_titulo" />
-
-        <TextView
-            style="@style/TextoParrafo"
+        <!-- Cabecera negra: presentación -->
+        <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="12dp"
-            android:text="@string/placeholder_parrafo" />
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <ImageView
+                    android:layout_width="40dp"
+                    android:layout_height="48dp"
+                    android:contentDescription="@string/empresa_nombre"
+                    android:src="@drawable/logo_hannah_oscuro" />
+
+                <ImageView
+                    android:layout_width="120dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="12dp"
+                    android:adjustViewBounds="true"
+                    android:contentDescription="@string/empresa_nombre"
+                    android:src="@drawable/logo_hannah_texto"
+                    android:tint="@color/blanco" />
+            </LinearLayout>
+
+            <TextView
+                style="@style/TextoTitulo.Claro"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:text="@string/inicio_lema" />
+
+            <TextView
+                style="@style/TextoParrafo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:text="@string/inicio_intro"
+                android:textColor="@color/eco_texto_claro" />
+
+            <TextView
+                style="@style/EtiquetaPanel"
+                android:layout_marginTop="20dp"
+                android:background="@drawable/bg_chip_lima"
+                android:paddingHorizontal="12dp"
+                android:paddingVertical="6dp"
+                android:text="@string/inicio_partner"
+                android:textColor="@color/eco_lima" />
+        </LinearLayout>
+
+        <!-- Tarjeta blanca: servicios y sectores -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card_superior"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                style="@style/TituloSeccion"
+                android:layout_marginTop="0dp"
+                android:text="@string/inicio_servicios" />
+
+            <LinearLayout
+                android:id="@+id/ll_servicios"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical" />
+
+            <TextView style="@style/TituloSeccion" android:text="@string/inicio_sectores" />
+
+            <TextView
+                style="@style/TextoParrafo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/inicio_sectores_texto" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_contacto"
+                style="@style/BotonPrimario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="32dp"
+                android:text="@string/inicio_cta" />
+        </LinearLayout>
     </LinearLayout>
 </ScrollView>

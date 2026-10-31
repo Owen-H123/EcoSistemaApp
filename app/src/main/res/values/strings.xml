@@ -112,5 +112,30 @@
     <string name="recuperar_volver">Volver al inicio de sesión</string>
     <string name="recuperar_enviado">Si el correo está registrado, recibirás las indicaciones</string>
 
+    <!-- Inicio público. Fuente: segundo cerebro, wiki/hannah/empresa (hannah-lab.md y productos.md) -->
+    <string name="inicio_lema">Tecnología que acompaña el crecimiento</string>
+    <string name="inicio_intro">Somos una empresa peruana que ordena, conecta y automatiza la tecnología de las empresas, con foco en el sector construcción.</string>
+    <string name="inicio_partner">Ready Partner de Odoo · versiones 18 y 19</string>
+    <string name="inicio_servicios">Nuestros servicios</string>
+    <string name="inicio_sectores">Sectores</string>
+    <string name="inicio_sectores_texto">Construcción es nuestro foco: constructoras, inmobiliarias, fabricantes de prefabricados de concreto y empresas de equipos. También acompañamos otros rubros cuando el problema es parecido.</string>
+    <string name="inicio_cta">Contáctanos</string>
+    <string-array name="servicios_titulos">
+        <item>Gestión empresarial con Odoo</item>
+        <item>Datos, migración y tableros</item>
+        <item>Automatización e IA aplicada</item>
+        <item>Integraciones y arquitectura</item>
+        <item>Software a medida</item>
+        <item>Cerebro corporativo</item>
+    </string-array>
+    <string-array name="servicios_descripciones">
+        <item>Implementación de ventas, inventario, contabilidad y operaciones, conectada con los sistemas que ya usa la empresa.</item>
+        <item>Fuentes ordenadas, migración trazable y tableros de gestión con cada cifra conectada a su origen.</item>
+        <item>Flujos que reducen tareas repetitivas y asisten la revisión de documentos y procesos, con supervisión humana.</item>
+        <item>Sistemas conectados y una arquitectura que evita volver a digitar o mantener información distinta en cada herramienta.</item>
+        <item>Plataformas y flujos construidos para procesos que no cubre un producto estándar.</item>
+        <item>Memoria de la empresa que une conocimiento, documentos, procesos, reuniones y decisiones, y crece con información validada.</item>
+    </string-array>
+
     <string name="placeholder_parrafo">Contenido en construcción.</string>
 </resources>
