@@ -1,0 +1,9 @@
+<resources>
+    <!-- Paleta Hannah: negro + verde. Ajustar el verde al tono oficial de marca. -->
+    <color name="hannah_negro">#FF0A0A0A</color>
+    <color name="hannah_verde">#FF22C55E</color>
+    <color name="hannah_verde_oscuro">#FF15803D</color>
+    <color name="blanco">#FFFFFFFF</color>
+    <color name="gris_texto">#FF4B5563</color>
+    <color name="fondo">#FFF9FAFB</color>
+</resources>

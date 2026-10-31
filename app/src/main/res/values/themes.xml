@@ -1,0 +1,30 @@
+<resources>
+
+    <style name="Theme.EcoApp" parent="Theme.Material3.Light.NoActionBar">
+        <item name="colorPrimary">@color/hannah_verde</item>
+        <item name="colorPrimaryDark">@color/hannah_negro</item>
+        <item name="colorSecondary">@color/hannah_verde_oscuro</item>
+        <item name="android:statusBarColor">@color/hannah_negro</item>
+        <item name="android:windowBackground">@color/fondo</item>
+    </style>
+
+    <style name="Theme.EcoApp.Splash">
+        <item name="android:windowBackground">@color/hannah_negro</item>
+        <item name="android:statusBarColor">@color/hannah_negro</item>
+        <item name="android:navigationBarColor">@color/hannah_negro</item>
+    </style>
+
+    <!-- Tipografía requerida: título 28sp, párrafo 24sp con interlineado 30sp -->
+    <style name="TextoTitulo">
+        <item name="android:textSize">28sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">@color/hannah_negro</item>
+    </style>
+
+    <style name="TextoParrafo">
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">30sp</item>
+        <item name="android:textColor">@color/gris_texto</item>
+    </style>
+
+</resources>

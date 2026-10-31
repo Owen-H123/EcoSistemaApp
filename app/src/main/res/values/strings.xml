@@ -1,0 +1,21 @@
+<resources>
+    <string name="app_name">EcoApp Hannah</string>
+    <string name="empresa_nombre">Hannah Lab</string>
+    <string name="empresa_lema">Tecnología a la medida de tu negocio</string>
+
+    <string name="drawer_open">Abrir menú</string>
+    <string name="drawer_close">Cerrar menú</string>
+
+    <string name="menu_inicio">Inicio</string>
+    <string name="menu_nosotros">Nosotros</string>
+    <string name="menu_contactos">Contactos</string>
+    <string name="menu_login">Login</string>
+
+    <string name="inicio_titulo">Bienvenido a Hannah Lab</string>
+    <string name="nosotros_titulo">Quiénes somos</string>
+    <string name="contactos_titulo">Contáctanos</string>
+    <string name="login_titulo">Iniciar sesión</string>
+    <string name="planilla_titulo">Planilla por horas</string>
+
+    <string name="placeholder_parrafo">Contenido en construcción.</string>
+</resources>
