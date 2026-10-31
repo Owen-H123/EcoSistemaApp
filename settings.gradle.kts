@@ -10,6 +10,8 @@ dependencyResolutionManagement {
     repositories {
         google()
         mavenCentral()
+        // MPAndroidChart se publica en JitPack
+        maven("https://jitpack.io")
     }
 }
 

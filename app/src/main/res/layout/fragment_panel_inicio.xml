@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/eco_negro"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <!-- Cabecera negra: saludo + resumen del mes -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                android:id="@+id/tv_saludo"
+                style="@style/EtiquetaPanel"
+                android:textColor="@color/eco_lima" />
+
+            <TextView
+                android:id="@+id/tv_nombre"
+                style="@style/TextoTitulo.Claro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/tv_label_1" style="@style/EtiquetaPanel" />
+
+                    <TextView android:id="@+id/tv_valor_1" style="@style/ValorPanel" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="48dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/eco_gris_oscuro" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView android:id="@+id/tv_label_2" style="@style/EtiquetaPanel" />
+
+                    <TextView
+                        android:id="@+id/tv_valor_2"
+                        style="@style/ValorPanel"
+                        android:textColor="@color/eco_lima" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.progressindicator.LinearProgressIndicator
+                android:id="@+id/progress_meta"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:max="100"
+                app:indicatorColor="@color/eco_lima"
+                app:trackColor="@color/eco_gris_oscuro"
+                app:trackCornerRadius="5dp"
+                app:trackStopIndicatorSize="0dp"
+                app:indicatorTrackGapSize="0dp"
+                app:trackThickness="10dp" />
+
+            <TextView
+                android:id="@+id/tv_meta"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:textColor="@color/eco_texto_claro"
+                android:textSize="14sp" />
+        </LinearLayout>
+
+        <!-- Tarjeta blanca -->
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card_superior"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/bg_tarjeta_lima"
+                android:gravity="center_vertical"
+                android:orientation="horizontal"
+                android:padding="20dp">
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_horizontal"
+                    android:orientation="vertical">
+
+                    <FrameLayout
+                        android:layout_width="88dp"
+                        android:layout_height="88dp">
+
+                        <com.google.android.material.progressindicator.CircularProgressIndicator
+                            android:id="@+id/progress_circulo"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:max="100"
+                            app:indicatorColor="@color/eco_lima_oscuro"
+                            app:indicatorSize="88dp"
+                            app:trackColor="@color/eco_fondo"
+                            app:trackStopIndicatorSize="0dp"
+                app:indicatorTrackGapSize="0dp"
+                app:trackThickness="8dp" />
+
+                        <TextView
+                            android:id="@+id/tv_porcentaje"
+                            style="@style/ValorTarjeta"
+                            android:layout_gravity="center" />
+                    </FrameLayout>
+
+                    <TextView
+                        style="@style/EtiquetaPanel"
+                        android:layout_marginTop="6dp"
+                        android:text="@string/panel_avance"
+                        android:textColor="@color/eco_texto" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="1dp"
+                    android:layout_height="96dp"
+                    android:layout_marginHorizontal="16dp"
+                    android:background="@color/eco_borde" />
+
+                <LinearLayout
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/EtiquetaPanel"
+                        android:text="@string/panel_semana_pasada"
+                        android:textColor="@color/eco_texto_suave" />
+
+                    <TextView android:id="@+id/tv_semana_pasada" style="@style/ValorTarjeta" />
+
+                    <View
+                        android:layout_width="match_parent"
+                        android:layout_height="1dp"
+                        android:layout_marginVertical="10dp"
+                        android:background="@color/eco_borde" />
+
+                    <TextView
+                        style="@style/EtiquetaPanel"
+                        android:text="@string/panel_completadas"
+                        android:textColor="@color/eco_texto_suave" />
+
+                    <TextView android:id="@+id/tv_completadas" style="@style/ValorTarjeta" />
+                </LinearLayout>
+            </LinearLayout>
+
+            <com.google.android.material.button.MaterialButtonToggleGroup
+                android:id="@+id/toggle_periodo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="24dp"
+                app:selectionRequired="true"
+                app:singleSelection="true">
+
+                <Button android:id="@+id/btn_hoy" style="@style/ToggleEco" android:text="@string/periodo_hoy" />
+
+                <Button android:id="@+id/btn_semana" style="@style/ToggleEco" android:text="@string/periodo_semana" />
+
+                <Button android:id="@+id/btn_mes" style="@style/ToggleEco" android:text="@string/periodo_mes" />
+            </com.google.android.material.button.MaterialButtonToggleGroup>
+
+            <TextView style="@style/TituloSeccion" android:text="@string/panel_registros" />
+
+            <TextView
+                android:id="@+id/tv_vacio"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:padding="24dp"
+                android:text="@string/panel_sin_registros"
+                android:textColor="@color/eco_texto_suave"
+                android:visibility="gone" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_registros"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:nestedScrollingEnabled="false" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
