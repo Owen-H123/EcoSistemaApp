@@ -10,5 +10,8 @@
     <color name="eco_borde">#FFE5E5E5</color>         <!-- border -->
     <color name="eco_texto">#FF0A0A0A</color>
     <color name="eco_texto_suave">#FF737373</color>   <!-- muted-foreground -->
+    <color name="eco_texto_claro">#FFA3A3A3</color>
+    <color name="eco_meta">#FFD4D4D4</color>
+    <color name="eco_gris_oscuro">#FF262626</color>
     <color name="blanco">#FFFFFFFF</color>
 </resources>

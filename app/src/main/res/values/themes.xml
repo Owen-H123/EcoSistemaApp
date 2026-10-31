@@ -6,6 +6,9 @@
         <item name="colorOnPrimary">@color/eco_lima_texto</item>
         <item name="colorSecondary">@color/eco_lima_oscuro</item>
         <item name="colorControlActivated">@color/eco_lima_oscuro</item>
+        <!-- Indicador activo de la barra inferior -->
+        <item name="colorSecondaryContainer">@color/eco_lima</item>
+        <item name="colorOnSecondaryContainer">@color/eco_negro</item>
         <item name="android:textColorHint">@color/eco_texto_suave</item>
         <item name="android:fontFamily">@font/inter</item>
         <item name="android:statusBarColor">@color/eco_negro</item>
@@ -108,6 +111,64 @@
         <item name="backgroundTint">@color/eco_superficie</item>
         <item name="strokeColor">@color/eco_borde</item>
         <item name="strokeWidth">1dp</item>
+    </style>
+
+    <!-- Panel del trabajador -->
+    <style name="EtiquetaPanel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">12sp</item>
+        <item name="android:fontFamily">@font/oswald_500</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.08</item>
+        <item name="android:textColor">@color/eco_texto_claro</item>
+    </style>
+
+    <style name="ValorPanel">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/oswald_400</item>
+        <item name="android:textColor">@color/blanco</item>
+    </style>
+
+    <style name="ValorTarjeta" parent="ValorPanel">
+        <item name="android:textSize">22sp</item>
+        <item name="android:textColor">@color/eco_texto</item>
+    </style>
+
+    <style name="TituloSeccion">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginTop">24dp</item>
+        <item name="android:layout_marginBottom">8dp</item>
+        <item name="android:textSize">16sp</item>
+        <item name="android:fontFamily">@font/oswald_500</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:letterSpacing">0.06</item>
+        <item name="android:textColor">@color/eco_texto</item>
+    </style>
+
+    <style name="ToggleEco" parent="Widget.Material3.Button.OutlinedButton">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:insetTop">0dp</item>
+        <item name="android:insetBottom">0dp</item>
+        <item name="android:textSize">15sp</item>
+        <item name="android:fontFamily">@font/oswald_500</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/eco_negro</item>
+        <item name="backgroundTint">@color/toggle_fondo</item>
+        <item name="strokeColor">@color/eco_borde</item>
+        <item name="cornerRadius">4dp</item>
+    </style>
+
+    <style name="Avatar">
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/bg_circulo_lima</item>
+        <item name="android:fontFamily">@font/oswald_500</item>
+        <item name="android:textColor">@color/eco_lima_texto</item>
     </style>
 
 </resources>

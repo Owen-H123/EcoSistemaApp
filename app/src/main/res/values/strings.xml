@@ -23,13 +23,86 @@
     <string name="planilla_titulo">Planilla por horas</string>
 
     <string name="login_bienvenido">Bienvenido a EcoApp</string>
-    <string name="login_correo">Usuario o correo</string>
-    <string name="login_correo_hint">ejemplo@hannahlab.com</string>
+    <string name="login_correo">Correo</string>
+    <string name="login_correo_hint">ejemplo@ecoapp.test</string>
     <string name="login_contrasena">Contraseña</string>
     <string name="login_ingresar">Ingresar</string>
-    <string name="login_aviso">Las cuentas las crea el administrador de Hannah Lab.</string>
+    <string name="login_aviso">Las cuentas las crea el administrador.\nDemo: admin@ecoapp.test / admin123 · ana@ecoapp.test / dev123</string>
+    <string name="login_error">Correo o contraseña incorrectos</string>
     <string name="error_obligatorio">Campo obligatorio</string>
     <string name="error_correo">Correo no válido</string>
+    <string name="error_tarifa">Ingresa un monto mayor a 0</string>
+    <string name="error_numero">Ingresa un número válido</string>
+    <string name="error_contrasena_corta">Mínimo 6 caracteres</string>
+    <string name="error_correo_duplicado">Ese correo ya está registrado</string>
+
+    <!-- Panel del trabajador -->
+    <string name="panel_inicio">Inicio</string>
+    <string name="panel_analisis">Análisis</string>
+    <string name="panel_planilla">Planilla</string>
+    <string name="panel_perfil">Perfil</string>
+
+    <string name="saludo_manana">Buenos días</string>
+    <string name="saludo_tarde">Buenas tardes</string>
+    <string name="saludo_noche">Buenas noches</string>
+    <string name="panel_hola">Hola, %1$s</string>
+    <string name="panel_horas_mes">Horas del mes</string>
+    <string name="panel_neto_estimado">Neto estimado</string>
+    <string name="panel_horas_equipo">Horas del equipo</string>
+    <string name="panel_planilla_mes">Planilla del mes</string>
+    <string name="panel_meta_propia">%1$d%% de tu meta de %2$s</string>
+    <string name="panel_meta_equipo">%1$d%% de la meta del equipo (%2$s)</string>
+    <string name="panel_avance">Avance del mes</string>
+    <string name="panel_semana_pasada">Horas semana pasada</string>
+    <string name="panel_completadas">Actividades completadas</string>
+    <string name="periodo_hoy">Hoy</string>
+    <string name="periodo_semana">Semana</string>
+    <string name="periodo_mes">Mes</string>
+    <string name="panel_registros">Registros de horas</string>
+    <string name="panel_sin_registros">No hay registros en este periodo</string>
+    <string name="estado_completada">Completada</string>
+    <string name="estado_en_curso">En curso</string>
+
+    <string name="analisis_titulo">Análisis</string>
+    <string name="analisis_filtro">Ver</string>
+    <string name="analisis_todo_equipo">Todo el equipo</string>
+    <string name="analisis_horas_semana">Horas por semana</string>
+    <string name="analisis_leyenda_horas">Registradas</string>
+    <string name="analisis_leyenda_meta">Meta</string>
+    <string name="analisis_total">%1$s registradas de %2$s</string>
+    <string name="analisis_por_proyecto">Horas por proyecto</string>
+    <string name="analisis_por_persona">Horas por persona</string>
+    <string name="analisis_sin_datos">Sin registros este mes</string>
+
+    <string name="planilla_total_admin">Total a pagar</string>
+    <string name="planilla_total_dev">Tu neto del mes</string>
+    <string name="planilla_trabajadores">Trabajadores</string>
+    <string name="planilla_detalle_fila">%1$s × %2$s</string>
+    <string name="planilla_nota">Cálculo referencial: descuento de 13 % (ONP). Datos de demostración ficticios.</string>
+    <string name="planilla_tarifa">Tarifa por hora (S/)</string>
+    <string name="planilla_horas">Horas del mes</string>
+    <string name="planilla_calcular">Calcular</string>
+    <string name="planilla_guardar">Guardar tarifa</string>
+    <string name="planilla_guardada">Tarifa actualizada</string>
+    <string name="planilla_bruto">Salario bruto</string>
+    <string name="planilla_descuento">Descuento ONP (13 %)</string>
+    <string name="planilla_neto">Salario neto</string>
+
+    <string name="perfil_titulo">Perfil</string>
+    <string name="rol_admin">Administrador</string>
+    <string name="rol_developer">Developer</string>
+    <string name="perfil_cargo">Cargo</string>
+    <string name="perfil_meta">Meta mensual</string>
+    <string name="perfil_tarifa">Tarifa por hora</string>
+    <string name="perfil_nuevo_trabajador">Nuevo trabajador</string>
+    <string name="perfil_cerrar_sesion">Cerrar sesión</string>
+
+    <string name="trabajador_titulo">Nuevo trabajador</string>
+    <string name="trabajador_nombre">Nombre completo</string>
+    <string name="trabajador_cargo">Cargo</string>
+    <string name="trabajador_meta">Meta mensual (horas)</string>
+    <string name="trabajador_guardar">Guardar</string>
+    <string name="trabajador_creado">Trabajador creado</string>
 
     <string name="recuperar_titulo">Recuperar contraseña</string>
     <string name="recuperar_subtitulo">¿Olvidaste tu contraseña?</string>

@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:id="@+id/panel_inicio" android:icon="@drawable/ic_inicio" android:title="@string/panel_inicio" />
+    <item android:id="@+id/panel_analisis" android:icon="@drawable/ic_analisis" android:title="@string/panel_analisis" />
+    <item android:id="@+id/panel_planilla" android:icon="@drawable/ic_planilla" android:title="@string/panel_planilla" />
+    <item android:id="@+id/panel_perfil" android:icon="@drawable/ic_login" android:title="@string/panel_perfil" />
+</menu>
