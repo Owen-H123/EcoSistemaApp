@@ -25,8 +25,7 @@ class SinRespuestaException : Exception()
 
 /**
  * Ficha de cada trabajador (cargo, tarifa y meta) en Firestore: `trabajadores/{correo}`.
- * Firestore manda y Room guarda una copia, que es la que leen las pantallas del panel
- * porque las horas todavía están en la base local.
+ * Firestore manda y Room guarda una copia, que es la que leen las pantallas del panel.
  */
 class TrabajadoresRepository(
     private val context: Context,
@@ -59,12 +58,6 @@ class TrabajadoresRepository(
         } catch (e: Exception) {
             Log.w(ETIQUETA, "No se pudieron preparar las fichas", e)
         }
-    }
-
-    /** Copia en Room cada cambio de Firestore. El admin recibe todo el equipo; el resto, su ficha. */
-    suspend fun sincronizar(usuarioId: Long) {
-        val usuario = usuarioDao.findById(usuarioId) ?: return
-        cambios(usuario).collect { lista -> lista.forEach { guardarLocal(it) } }
     }
 
     /**
@@ -120,7 +113,8 @@ class TrabajadoresRepository(
         }
     }
 
-    private fun cambios(usuario: Usuario): Flow<List<Usuario>> = callbackFlow {
+    /** Fichas en vivo. El admin recibe todo el equipo; el resto, solo la suya. */
+    fun cambios(usuario: Usuario): Flow<List<Usuario>> = callbackFlow {
         val oyente = if (usuario.esAdmin) {
             fichas.addSnapshotListener { consulta, error ->
                 if (error != null) close(error)
@@ -135,7 +129,8 @@ class TrabajadoresRepository(
         awaitClose { oyente.remove() }
     }
 
-    private suspend fun guardarLocal(ficha: Usuario) {
+    /** Crea o actualiza en Room la copia de una ficha. */
+    suspend fun guardarLocal(ficha: Usuario) {
         val existente = usuarioDao.findByCorreo(ficha.correo)
         if (existente == null) {
             usuarioDao.insert(ficha)

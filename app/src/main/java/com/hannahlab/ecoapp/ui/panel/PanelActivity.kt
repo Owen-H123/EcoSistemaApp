@@ -41,17 +41,17 @@ class PanelActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemReselectedListener { }
 
         if (savedInstanceState == null) showSection(R.id.panel_inicio)
-        mantenerFichasAlDia()
+        mantenerDatosAlDia()
     }
 
-    /** Mientras el panel está a la vista, trae de Firestore los cambios en cargos y tarifas. */
-    private fun mantenerFichasAlDia() {
+    /** Mientras el panel está a la vista, trae de Firestore los cambios en fichas y horas. */
+    private fun mantenerDatosAlDia() {
         val usuarioId = ecoApp.session.usuarioId ?: return
         lifecycleScope.launch {
-            ecoApp.trabajadores.preparar(usuarioId)
+            ecoApp.registros.preparar(usuarioId)
             repeatOnLifecycle(Lifecycle.State.STARTED) {
                 try {
-                    ecoApp.trabajadores.sincronizar(usuarioId)
+                    ecoApp.registros.sincronizar(usuarioId)
                 } catch (e: CancellationException) {
                     throw e
                 } catch (e: Exception) {

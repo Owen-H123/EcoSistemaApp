@@ -176,6 +176,13 @@
                 </LinearLayout>
             </LinearLayout>
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_registrar_horas"
+                style="@style/BotonPrimario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:text="@string/horas_titulo" />
+
             <com.google.android.material.button.MaterialButtonToggleGroup
                 android:id="@+id/toggle_periodo"
                 android:layout_width="match_parent"
