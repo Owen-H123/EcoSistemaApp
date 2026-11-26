@@ -25,6 +25,18 @@ service cloud.firestore {
         && ficha.activo is bool;
     }
 
+    function registroValido() {
+      let campos = ['correo', 'fecha', 'proyecto', 'actividad', 'horas', 'completada', 'creadoEn'];
+      let registro = request.resource.data;
+      return registro.keys().hasOnly(campos) && registro.keys().hasAll(campos)
+        && registro.correo is string
+        && registro.fecha is int
+        && registro.proyecto is string && registro.proyecto.size() > 0 && registro.proyecto.size() <= 100
+        && registro.actividad is string && registro.actividad.size() > 0 && registro.actividad.size() <= 200
+        && registro.horas is number && registro.horas > 0 && registro.horas <= 24
+        && registro.completada is bool;
+    }
+
     // Perfil de cada cuenta: solo su dueño lo lee y lo crea.
     // El rol siempre nace como trabajador; el de administrador se asigna desde la consola.
     match /usuarios/{uid} {
@@ -53,6 +65,16 @@ service cloud.firestore {
       allow update: if fichaValida() && esAdmin();
 
       allow delete: if false;
+    }
+
+    // Horas trabajadas: cada trabajador registra y ve las suyas; el admin, las de todos.
+    match /registros/{id} {
+      allow read: if haySesion() && (resource.data.correo == request.auth.token.email || esAdmin());
+
+      allow create: if registroValido()
+        && (esAdmin() || (haySesion() && request.resource.data.correo == request.auth.token.email));
+
+      allow update, delete: if false;
     }
 
     // Formulario de contacto: cada cuenta envía y ve sus mensajes; el admin ve todos.

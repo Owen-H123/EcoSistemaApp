@@ -191,6 +191,15 @@
     <string name="contacto_enviar_correo">Enviar por correo</string>
     <string name="contacto_guardado">Mensaje enviado correctamente</string>
     <string name="contacto_registrados">Mensajes que has enviado: %1$d</string>
+    <string name="horas_titulo">Registrar horas</string>
+    <string name="horas_trabajador">Trabajador</string>
+    <string name="horas_fecha">Fecha</string>
+    <string name="horas_proyecto">Proyecto</string>
+    <string name="horas_actividad">Actividad</string>
+    <string name="horas_cantidad">Horas trabajadas</string>
+    <string name="horas_completada">Actividad completada</string>
+    <string name="horas_guardadas">Horas registradas</string>
+    <string name="error_horas">Ingresa entre 0 y 24 horas</string>
     <string name="aviso_pendiente">Sin conexión. Se enviará cuando vuelva internet</string>
     <string name="error_permiso">No tienes permiso para esta acción</string>
     <string name="contacto_sin_app">No hay una app instalada para abrir esto</string>

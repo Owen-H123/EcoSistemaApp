@@ -62,6 +62,13 @@
             android:screenOrientation="portrait" />
 
         <activity
+            android:name=".ui.horas.RegistrarHorasActivity"
+            android:exported="false"
+            android:parentActivityName=".ui.panel.PanelActivity"
+            android:screenOrientation="portrait"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
             android:name=".ui.recuperar.RecuperarContrasenaActivity"
             android:exported="false"
             android:screenOrientation="portrait"

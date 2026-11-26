@@ -27,6 +27,10 @@ object SeedData {
     /** Correos de los trabajadores de demostración (sin el admin). */
     fun correosDeTrabajadores(): List<String> = usuarios().filterNot { it.esAdmin }.map { it.correo }
 
+    /** Horas de ejemplo de un trabajador, con fechas relativas a hoy. */
+    fun registrosDeDemostracion(correo: String): List<RegistroHoras> =
+        generarRegistros(usuarioId = 0, random = Random(correo.hashCode()))
+
     private fun usuarios() = listOf(
         Usuario(
             nombre = "Admin Hannah", correo = "admin@ecoapp.test",
@@ -58,8 +62,7 @@ object SeedData {
     )
 
     /** Uno o dos registros por día hábil desde hace ~40 días hasta hoy. */
-    private fun generarRegistros(usuarioId: Long): List<RegistroHoras> {
-        val random = Random(usuarioId)
+    private fun generarRegistros(usuarioId: Long, random: Random = Random(usuarioId)): List<RegistroHoras> {
         val hoy = LocalDate.now()
         return generateSequence(hoy.minusDays(40)) { it.plusDays(1) }
             .takeWhile { !it.isAfter(hoy) }

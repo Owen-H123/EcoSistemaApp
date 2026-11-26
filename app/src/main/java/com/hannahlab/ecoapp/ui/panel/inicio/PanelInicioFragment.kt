@@ -1,5 +1,6 @@
 package com.hannahlab.ecoapp.ui.panel.inicio
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.View
 import androidx.annotation.StringRes
@@ -14,6 +15,7 @@ import com.hannahlab.ecoapp.data.local.entity.RegistroDetalle
 import com.hannahlab.ecoapp.data.local.entity.Usuario
 import com.hannahlab.ecoapp.databinding.FragmentPanelInicioBinding
 import com.hannahlab.ecoapp.ecoApp
+import com.hannahlab.ecoapp.ui.horas.RegistrarHorasActivity
 import com.hannahlab.ecoapp.util.CalculoPlanilla
 import com.hannahlab.ecoapp.util.Fechas
 import com.hannahlab.ecoapp.util.Formato
@@ -45,6 +47,10 @@ class PanelInicioFragment : Fragment(R.layout.fragment_panel_inicio) {
         adapter = RegistroAdapter(mostrarNombre = esAdmin)
         binding.rvRegistros.layoutManager = LinearLayoutManager(requireContext())
         binding.rvRegistros.adapter = adapter
+
+        binding.btnRegistrarHoras.setOnClickListener {
+            startActivity(Intent(requireContext(), RegistrarHorasActivity::class.java))
+        }
 
         binding.togglePeriodo.check(R.id.btn_semana)
         binding.togglePeriodo.addOnButtonCheckedListener { _, checkedId, isChecked ->

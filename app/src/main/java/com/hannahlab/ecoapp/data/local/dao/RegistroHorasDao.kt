@@ -3,6 +3,7 @@ package com.hannahlab.ecoapp.data.local.dao
 import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.Query
+import androidx.room.Transaction
 import com.hannahlab.ecoapp.data.local.entity.HorasPorUsuario
 import com.hannahlab.ecoapp.data.local.entity.RegistroDetalle
 import com.hannahlab.ecoapp.data.local.entity.RegistroHoras
@@ -31,4 +32,17 @@ interface RegistroHorasDao {
 
     @Insert
     suspend fun insertAll(registros: List<RegistroHoras>)
+
+    @Query("DELETE FROM registro_horas")
+    suspend fun borrarTodos()
+
+    @Query("DELETE FROM registro_horas WHERE usuario_id = :usuarioId")
+    suspend fun borrarDeUsuario(usuarioId: Long)
+
+    /** Cambia la copia local por la del servidor. Con usuarioId nulo reemplaza la de todo el equipo. */
+    @Transaction
+    suspend fun reemplazar(usuarioId: Long?, registros: List<RegistroHoras>) {
+        if (usuarioId == null) borrarTodos() else borrarDeUsuario(usuarioId)
+        insertAll(registros)
+    }
 }
