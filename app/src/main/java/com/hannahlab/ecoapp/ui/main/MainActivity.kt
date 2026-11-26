@@ -41,6 +41,10 @@ class MainActivity : AppCompatActivity() {
         toggle.syncState()
 
         binding.navView.setNavigationItemSelectedListener { item ->
+            if (item.itemId == R.id.nav_cerrar_sesion) {
+                cerrarSesion()
+                return@setNavigationItemSelectedListener false
+            }
             showSection(item.itemId)
             binding.drawerLayout.closeDrawer(GravityCompat.START)
             true
@@ -78,6 +82,11 @@ class MainActivity : AppCompatActivity() {
         }
         replaceFragment(fragment)
         supportActionBar?.title = getString(title)
+    }
+
+    private fun cerrarSesion() {
+        ecoApp.auth.cerrarSesion()
+        abrirComoInicio(LoginActivity::class.java)
     }
 
     private fun replaceFragment(fragment: Fragment) {

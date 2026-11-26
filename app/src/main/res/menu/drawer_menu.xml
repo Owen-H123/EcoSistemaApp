@@ -18,4 +18,11 @@
             android:icon="@drawable/ic_login"
             android:title="@string/menu_login" />
     </group>
+    <!-- Grupo aparte: el menú lo separa con una línea y no queda marcado como sección -->
+    <group android:id="@+id/grupo_sesion">
+        <item
+            android:id="@+id/nav_cerrar_sesion"
+            android:icon="@drawable/ic_cerrar_sesion"
+            android:title="@string/perfil_cerrar_sesion" />
+    </group>
 </menu>
