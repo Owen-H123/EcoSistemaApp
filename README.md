@@ -17,6 +17,7 @@ Aplicación Android nativa en **Kotlin** para **Hannah Lab**, empresa peruana de
 - **Nosotros**: forma de trabajo, valores y fortalezas.
 - **Contactos**: oficina, correo y web (abren Maps, la app de correo y el navegador), mapa con la ubicación de la oficina y formulario con validación que guarda el mensaje en la base local.
 - **Login**: la cuenta con la sesión iniciada y el acceso al panel.
+- **Cerrar sesión**: vuelve a la pantalla de Login.
 
 **Panel del trabajador**
 
