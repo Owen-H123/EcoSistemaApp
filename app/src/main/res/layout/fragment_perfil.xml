@@ -43,7 +43,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/eco_texto_claro"
-                android:textSize="14sp" />
+                style="@style/TextoParrafo" />
         </LinearLayout>
 
         <LinearLayout
@@ -63,15 +63,15 @@
 
                 <TextView style="@style/EtiquetaPanel" android:text="@string/perfil_cargo" />
 
-                <TextView android:id="@+id/tv_cargo" style="@style/ValorTarjeta" android:textSize="18sp" />
+                <TextView android:id="@+id/tv_cargo" style="@style/ValorTarjeta" />
 
                 <TextView style="@style/EtiquetaPanel" android:layout_marginTop="14dp" android:text="@string/perfil_meta" />
 
-                <TextView android:id="@+id/tv_meta" style="@style/ValorTarjeta" android:textSize="18sp" />
+                <TextView android:id="@+id/tv_meta" style="@style/ValorTarjeta" />
 
                 <TextView style="@style/EtiquetaPanel" android:layout_marginTop="14dp" android:text="@string/perfil_tarifa" />
 
-                <TextView android:id="@+id/tv_tarifa" style="@style/ValorTarjeta" android:textSize="18sp" />
+                <TextView android:id="@+id/tv_tarifa" style="@style/ValorTarjeta" />
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton

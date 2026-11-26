@@ -60,7 +60,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/login_correo_hint"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView
@@ -77,7 +78,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -100,7 +102,7 @@
                 android:gravity="center"
                 android:text="@string/login_aviso"
                 android:textColor="@color/eco_texto_suave"
-                android:textSize="14sp" />
+                style="@style/TextoParrafo" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

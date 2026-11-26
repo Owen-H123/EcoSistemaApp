@@ -36,6 +36,6 @@
             android:layout_height="wrap_content"
             android:fontFamily="@font/inter_600"
             android:textColor="@color/eco_texto"
-            android:textSize="16sp" />
+            style="@style/TextoParrafo" />
     </LinearLayout>
 </LinearLayout>

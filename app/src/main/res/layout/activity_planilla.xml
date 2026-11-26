@@ -18,6 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/eco_negro"
             app:navigationIconTint="@color/blanco"
+            app:titleTextAppearance="@style/TituloBarra"
             app:titleTextColor="@color/blanco" />
 
         <!-- Cabecera: trabajador -->
@@ -54,7 +55,7 @@
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textColor="@color/eco_texto_claro"
-                    android:textSize="14sp" />
+                    style="@style/TextoParrafo" />
 
                 <TextView
                     android:id="@+id/tv_mes"
@@ -81,7 +82,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/planilla_horas" />
@@ -93,7 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:enabled="false"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -120,9 +123,9 @@
                         android:layout_weight="1"
                         android:text="@string/planilla_bruto"
                         android:textColor="@color/eco_texto_suave"
-                        android:textSize="16sp" />
+                        style="@style/TextoParrafo" />
 
-                    <TextView android:id="@+id/tv_bruto" style="@style/ValorTarjeta" android:textSize="18sp" />
+                    <TextView android:id="@+id/tv_bruto" style="@style/ValorTarjeta" />
                 </LinearLayout>
 
                 <LinearLayout
@@ -137,9 +140,9 @@
                         android:layout_weight="1"
                         android:text="@string/planilla_descuento"
                         android:textColor="@color/eco_texto_suave"
-                        android:textSize="16sp" />
+                        style="@style/TextoParrafo" />
 
-                    <TextView android:id="@+id/tv_descuento" style="@style/ValorTarjeta" android:textSize="18sp" />
+                    <TextView android:id="@+id/tv_descuento" style="@style/ValorTarjeta" />
                 </LinearLayout>
 
                 <View
@@ -154,7 +157,7 @@
                     android:id="@+id/tv_neto"
                     style="@style/ValorTarjeta"
                     android:textColor="@color/eco_lima_texto"
-                    android:textSize="36sp" />
+                    android:textSize="28sp" />
             </LinearLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -170,7 +173,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/planilla_nota"
                 android:textColor="@color/eco_texto_suave"
-                android:textSize="12sp" />
+                style="@style/TextoParrafo" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

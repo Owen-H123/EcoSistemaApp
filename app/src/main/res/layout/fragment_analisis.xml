@@ -33,7 +33,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="4dp"
                 android:textColor="@color/eco_texto_claro"
-                android:textSize="14sp" />
+                style="@style/TextoParrafo" />
         </LinearLayout>
 
         <LinearLayout
@@ -56,7 +56,8 @@
                     android:id="@+id/actv_filtro"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:inputType="none" />
+                    android:inputType="none"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <LinearLayout
@@ -90,7 +91,7 @@
                         android:layout_marginEnd="16dp"
                         android:text="@string/analisis_leyenda_horas"
                         android:textColor="@color/eco_texto_suave"
-                        android:textSize="12sp" />
+                        style="@style/TextoParrafo" />
 
                     <View
                         android:layout_width="10dp"
@@ -103,7 +104,7 @@
                         android:layout_marginStart="6dp"
                         android:text="@string/analisis_leyenda_meta"
                         android:textColor="@color/eco_texto_suave"
-                        android:textSize="12sp" />
+                        style="@style/TextoParrafo" />
                 </LinearLayout>
 
                 <com.github.mikephil.charting.charts.BarChart

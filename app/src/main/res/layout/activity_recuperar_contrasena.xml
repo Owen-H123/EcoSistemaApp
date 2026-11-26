@@ -74,7 +74,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/login_correo_hint"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton

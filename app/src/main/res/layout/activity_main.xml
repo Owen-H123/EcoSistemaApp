@@ -18,6 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/eco_negro"
             app:navigationIconTint="@color/blanco"
+            app:titleTextAppearance="@style/TituloBarra"
             app:titleTextColor="@color/blanco" />
 
         <FrameLayout
@@ -32,6 +33,7 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         app:headerLayout="@layout/nav_header"
+        app:itemTextAppearance="@style/TextoMenu"
         app:menu="@menu/drawer_menu" />
 
 </androidx.drawerlayout.widget.DrawerLayout>

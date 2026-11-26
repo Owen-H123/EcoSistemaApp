@@ -18,6 +18,7 @@
             android:layout_height="?attr/actionBarSize"
             android:background="@color/eco_negro"
             app:navigationIconTint="@color/blanco"
+            app:titleTextAppearance="@style/TituloBarra"
             app:titleTextColor="@color/blanco" />
 
         <LinearLayout
@@ -38,7 +39,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName|textCapWords"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/login_correo" />
@@ -51,7 +53,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/login_correo_hint"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/login_contrasena" />
@@ -66,7 +69,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPassword"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/trabajador_cargo" />
@@ -78,7 +82,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/planilla_tarifa" />
@@ -90,7 +95,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/trabajador_meta" />
@@ -103,7 +109,8 @@
                     android:layout_height="wrap_content"
                     android:inputType="numberDecimal"
                     android:text="160"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
