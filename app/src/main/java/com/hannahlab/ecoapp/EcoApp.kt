@@ -2,6 +2,7 @@ package com.hannahlab.ecoapp
 
 import android.app.Application
 import android.content.Context
+import com.hannahlab.ecoapp.data.auth.AuthRepository
 import com.hannahlab.ecoapp.data.local.AppDatabase
 import com.hannahlab.ecoapp.data.local.SeedData
 import com.hannahlab.ecoapp.data.session.SessionManager
@@ -13,6 +14,7 @@ import kotlinx.coroutines.launch
 class EcoApp : Application() {
     val database: AppDatabase by lazy { AppDatabase.getInstance(this) }
     val session: SessionManager by lazy { SessionManager(this) }
+    val auth: AuthRepository by lazy { AuthRepository(database.usuarioDao(), session) }
 
     private val appScope = CoroutineScope(SupervisorJob() + Dispatchers.IO)
 

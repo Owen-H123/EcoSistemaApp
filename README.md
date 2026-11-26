@@ -6,16 +6,19 @@ Aplicación Android nativa en **Kotlin** para **Hannah Lab**, empresa peruana de
 
 ## Funcionalidades
 
-**Zona pública** (menú lateral)
+**Acceso**
 
 - **Splash** de 5 segundos con la marca.
-- **Bienvenida** con acceso como invitado o con inicio de sesión.
+- **Login**, **registro** y **recuperar contraseña** con Firebase Authentication. La sesión queda iniciada hasta que se cierre.
+
+**Menú lateral** (con la sesión iniciada)
+
 - **Inicio**: presentación de la empresa y sus seis líneas de servicio.
 - **Nosotros**: forma de trabajo, valores y fortalezas.
 - **Contactos**: oficina, correo y web (abren Maps, la app de correo y el navegador), mapa con la ubicación de la oficina y formulario con validación que guarda el mensaje en la base local.
-- **Login** y **recuperar contraseña**.
+- **Login**: la cuenta con la sesión iniciada y el acceso al panel.
 
-**Panel del trabajador** (después de iniciar sesión)
+**Panel del trabajador**
 
 | Pestaña | Developer | Admin |
 | --- | --- | --- |
@@ -34,7 +37,7 @@ La planilla se calcula por horas: `bruto = horas × tarifa`, menos un descuento 
 - Coroutines y Flow
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) para los gráficos
 - Maps SDK para Android (modo lite) para el mapa de Contactos
-- Firebase (Authentication y Firestore): librerías conectadas; el login y los datos todavía usan la base local
+- Firebase Authentication para las cuentas y Firestore para el perfil de cada usuario. Las horas, la planilla y los mensajes de contacto todavía usan la base local
 - Fuentes Oswald e Inter incluidas en `res/font`
 
 Versiones: Android Gradle Plugin 8.11, Kotlin 2.1, Gradle 8.14, `minSdk` 26, `targetSdk` 36.
@@ -53,16 +56,16 @@ También desde la terminal, con un emulador abierto:
 ./gradlew installDebug
 ```
 
-## Usuarios de prueba
+## Configurar Firebase
 
-Se crean solos la primera vez que se abre la app.
+1. En **Authentication → Método de acceso**, habilitar **Correo electrónico/contraseña**.
+2. En **Firestore Database → Reglas**, pegar el contenido de [`firestore.rules`](firestore.rules) y publicar. Sin las reglas no se puede iniciar sesión.
 
-| Rol | Correo | Contraseña |
-| --- | --- | --- |
-| Admin | `admin@ecoapp.test` | `admin123` |
-| Developer | `ana@ecoapp.test` | `dev123` |
-| Developer | `luis@ecoapp.test` | `dev123` |
-| Developer | `carla@ecoapp.test` | `dev123` |
+## Cuentas
+
+Cada persona crea la suya con **Registrarse** y empieza como trabajador. Para convertirla en administrador: en Firestore, colección `usuarios`, cambiar su campo `rol` a `ADMIN` y volver a iniciar sesión.
+
+La base local trae datos de demostración. Una cuenta registrada con uno de estos correos ve sus horas: `ana@ecoapp.test`, `luis@ecoapp.test`, `carla@ecoapp.test`.
 
 Para volver a los datos iniciales: Ajustes → Apps → EcoApp Hannah → Almacenamiento → Borrar datos.
 
@@ -72,16 +75,17 @@ Para volver a los datos iniciales: Ajustes → Apps → EcoApp Hannah → Almace
 app/src/main/java/com/hannahlab/ecoapp/
 ├── EcoApp.kt                 Application: base de datos, sesión y datos semilla
 ├── data/
+│   ├── auth/                 Cuentas con Firebase Authentication y perfil en Firestore
 │   ├── local/                Room: entidades, DAOs, AppDatabase y SeedData
 │   ├── repository/           Acceso a datos del formulario de contacto
 │   └── session/              Sesión del usuario (SharedPreferences)
 ├── util/                     Fechas, formato de moneda, cálculo de planilla y hash
 └── ui/
-    ├── splash/  welcome/  recuperar/
-    ├── main/                 Drawer público y sus Fragments
+    ├── splash/  acceso/  registro/  recuperar/
+    ├── main/                 Menú lateral y sus Fragments
     ├── panel/                Panel del trabajador: inicio, análisis, planilla y perfil
     ├── planilla/             Formulario de salario
     └── trabajador/           Alta de trabajadores (solo admin)
 ```
 
-Las contraseñas se guardan como hash SHA-256, nunca en texto plano.
+Las contraseñas de las cuentas las gestiona Firebase Authentication; la app no las guarda.

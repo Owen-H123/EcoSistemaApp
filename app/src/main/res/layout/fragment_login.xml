@@ -89,20 +89,18 @@
                 android:layout_marginTop="48dp"
                 android:text="@string/login_ingresar" />
 
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_registrarse"
+                style="@style/BotonSecundario"
+                android:layout_gravity="center_horizontal"
+                android:layout_marginTop="12dp"
+                android:text="@string/login_registrarse" />
+
             <TextView
                 android:id="@+id/tv_olvide"
                 style="@style/EnlaceEco"
                 android:layout_marginTop="12dp"
-                android:text="@string/welcome_olvide" />
-
-            <TextView
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="24dp"
-                android:gravity="center"
-                android:text="@string/login_aviso"
-                android:textColor="@color/eco_texto_suave"
-                style="@style/TextoParrafo" />
+                android:text="@string/login_olvide" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

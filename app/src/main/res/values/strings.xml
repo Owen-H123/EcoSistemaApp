@@ -4,10 +4,6 @@
     <string name="marca">EcoApp</string>
     <string name="empresa_lema">El ecosistema de Hannah Lab en tu bolsillo</string>
 
-    <string name="welcome_ingresar">Ingresar</string>
-    <string name="welcome_iniciar_sesion">Iniciar sesión</string>
-    <string name="welcome_olvide">¿Olvidaste tu contraseña?</string>
-
     <string name="drawer_open">Abrir menú</string>
     <string name="drawer_close">Cerrar menú</string>
 
@@ -27,8 +23,22 @@
     <string name="login_correo_hint">ejemplo@ecoapp.test</string>
     <string name="login_contrasena">Contraseña</string>
     <string name="login_ingresar">Ingresar</string>
-    <string name="login_aviso">Las cuentas las crea el administrador.\nDemo: admin@ecoapp.test / admin123 · ana@ecoapp.test / dev123</string>
+    <string name="login_registrarse">Registrarse</string>
+    <string name="login_olvide">¿Olvidaste tu contraseña?</string>
     <string name="login_error">Correo o contraseña incorrectos</string>
+    <string name="registro_titulo">Regístrate</string>
+    <string name="registro_repetir">Repetir contraseña</string>
+    <string name="registro_boton">Crear cuenta</string>
+    <string name="registro_ya_tengo">Ya tengo cuenta</string>
+    <string name="registro_creado">Cuenta creada</string>
+    <string name="cuenta_texto">Tienes la sesión iniciada. En tu panel están tus horas, tu planilla y tu perfil.</string>
+    <string name="cuenta_ir_panel">Ir a mi panel</string>
+    <string name="error_contrasena_distinta">Las contraseñas no coinciden</string>
+    <string name="error_conexion">Sin conexión. Revisa tu internet e inténtalo de nuevo</string>
+    <string name="error_intentos">Demasiados intentos. Espera unos minutos</string>
+    <string name="error_perfil">No se pudo cargar tu perfil. Inténtalo de nuevo</string>
+    <string name="error_cuenta_inactiva">Esta cuenta está dada de baja</string>
+    <string name="error_general">No se pudo completar. Inténtalo de nuevo</string>
     <string name="error_obligatorio">Campo obligatorio</string>
     <string name="error_correo">Correo no válido</string>
     <string name="error_tarifa">Ingresa un monto mayor a 0</string>

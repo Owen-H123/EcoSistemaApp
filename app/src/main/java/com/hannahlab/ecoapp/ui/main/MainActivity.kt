@@ -8,9 +8,12 @@ import androidx.core.view.GravityCompat
 import androidx.fragment.app.Fragment
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.databinding.ActivityMainBinding
+import com.hannahlab.ecoapp.ecoApp
+import com.hannahlab.ecoapp.ui.acceso.LoginActivity
+import com.hannahlab.ecoapp.ui.acceso.abrirComoInicio
 import com.hannahlab.ecoapp.ui.main.fragments.ContactosFragment
+import com.hannahlab.ecoapp.ui.main.fragments.CuentaFragment
 import com.hannahlab.ecoapp.ui.main.fragments.InicioFragment
-import com.hannahlab.ecoapp.ui.main.fragments.LoginFragment
 import com.hannahlab.ecoapp.ui.main.fragments.NosotrosFragment
 
 class MainActivity : AppCompatActivity() {
@@ -19,6 +22,11 @@ class MainActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (!ecoApp.auth.haySesion) {
+            abrirComoInicio(LoginActivity::class.java)
+            finish()
+            return
+        }
         binding = ActivityMainBinding.inflate(layoutInflater)
         setContentView(binding.root)
         setSupportActionBar(binding.toolbar)
@@ -50,14 +58,9 @@ class MainActivity : AppCompatActivity() {
         })
 
         if (savedInstanceState == null) {
-            val initial = if (intent.getBooleanExtra(EXTRA_OPEN_LOGIN, false)) R.id.nav_login else R.id.nav_inicio
-            binding.navView.setCheckedItem(initial)
-            showSection(initial)
+            binding.navView.setCheckedItem(R.id.nav_inicio)
+            showSection(R.id.nav_inicio)
         }
-    }
-
-    companion object {
-        const val EXTRA_OPEN_LOGIN = "open_login"
     }
 
     /** Permite que un fragment lleve a otra sección del drawer (ej. Inicio → Contactos). */
@@ -70,7 +73,7 @@ class MainActivity : AppCompatActivity() {
         val (fragment, title) = when (itemId) {
             R.id.nav_nosotros -> NosotrosFragment() to R.string.menu_nosotros
             R.id.nav_contactos -> ContactosFragment() to R.string.menu_contactos
-            R.id.nav_login -> LoginFragment() to R.string.menu_login
+            R.id.nav_login -> CuentaFragment() to R.string.menu_login
             else -> InicioFragment() to R.string.menu_inicio
         }
         replaceFragment(fragment)

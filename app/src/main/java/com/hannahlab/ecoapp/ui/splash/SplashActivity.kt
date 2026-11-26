@@ -8,17 +8,22 @@ import android.os.Looper
 import androidx.appcompat.app.AppCompatActivity
 import com.hannahlab.ecoapp.databinding.ActivitySplashBinding
 import com.hannahlab.ecoapp.ecoApp
-import com.hannahlab.ecoapp.ui.panel.PanelActivity
-import com.hannahlab.ecoapp.ui.welcome.WelcomeActivity
+import com.hannahlab.ecoapp.ui.acceso.LoginActivity
+import com.hannahlab.ecoapp.ui.main.MainActivity
 
 @SuppressLint("CustomSplashScreen")
 class SplashActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivitySplashBinding
     private val handler = Handler(Looper.getMainLooper())
-    private val goToWelcome = Runnable {
-        // Si ya hay sesión, va directo al panel del trabajador
-        val destino = if (ecoApp.session.usuarioId != null) PanelActivity::class.java else WelcomeActivity::class.java
+    private val continuar = Runnable {
+        // Con sesión iniciada entra directo a la app; si no, pide iniciar sesión
+        val destino = if (ecoApp.auth.haySesion) {
+            MainActivity::class.java
+        } else {
+            ecoApp.auth.cerrarSesion() // descarta restos de una sesión incompleta
+            LoginActivity::class.java
+        }
         startActivity(Intent(this, destino))
         finish()
     }
@@ -27,11 +32,11 @@ class SplashActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         binding = ActivitySplashBinding.inflate(layoutInflater)
         setContentView(binding.root)
-        handler.postDelayed(goToWelcome, SPLASH_DURATION_MS)
+        handler.postDelayed(continuar, SPLASH_DURATION_MS)
     }
 
     override fun onDestroy() {
-        handler.removeCallbacks(goToWelcome)
+        handler.removeCallbacks(continuar)
         super.onDestroy()
     }
 

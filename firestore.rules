@@ -1,0 +1,22 @@
+rules_version = '2';
+
+// Pegar en Firebase Console > Firestore Database > Reglas > Publicar.
+// Todo lo que no se permite aquí queda bloqueado.
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Perfil de cada cuenta: solo su dueño lo lee y lo crea.
+    // El rol siempre nace como trabajador; el de administrador se asigna desde la consola.
+    match /usuarios/{uid} {
+      allow read: if request.auth != null && request.auth.uid == uid;
+
+      allow create: if request.auth != null && request.auth.uid == uid
+        && request.resource.data.keys().hasOnly(['nombre', 'correo', 'rol', 'creadoEn'])
+        && request.resource.data.nombre is string
+        && request.resource.data.correo == request.auth.token.email
+        && request.resource.data.rol == 'DEVELOPER';
+
+      allow update, delete: if false;
+    }
+  }
+}

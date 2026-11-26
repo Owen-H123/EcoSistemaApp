@@ -4,14 +4,18 @@ import android.content.Intent
 import android.os.Bundle
 import android.util.Patterns
 import android.view.View
+import android.widget.Toast
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.lifecycleScope
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.databinding.FragmentLoginBinding
 import com.hannahlab.ecoapp.ecoApp
-import com.hannahlab.ecoapp.ui.panel.PanelActivity
+import com.hannahlab.ecoapp.ui.acceso.abrirComoInicio
+import com.hannahlab.ecoapp.ui.acceso.mensajeDeError
+import com.hannahlab.ecoapp.ui.main.MainActivity
 import com.hannahlab.ecoapp.ui.recuperar.RecuperarContrasenaActivity
-import com.hannahlab.ecoapp.util.Seguridad
+import com.hannahlab.ecoapp.ui.registro.RegistroActivity
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 
 class LoginFragment : Fragment(R.layout.fragment_login) {
@@ -24,27 +28,30 @@ class LoginFragment : Fragment(R.layout.fragment_login) {
         _binding = FragmentLoginBinding.bind(view)
 
         binding.btnIngresar.setOnClickListener { if (isFormValid()) iniciarSesion() }
+        binding.btnRegistrarse.setOnClickListener {
+            startActivity(Intent(requireContext(), RegistroActivity::class.java))
+        }
         binding.tvOlvide.setOnClickListener {
             startActivity(Intent(requireContext(), RecuperarContrasenaActivity::class.java))
         }
     }
 
     private fun iniciarSesion() {
-        val app = requireContext().ecoApp
+        val auth = requireContext().ecoApp.auth
         val correo = binding.etCorreo.text.toString().trim().lowercase()
         val contrasena = binding.etContrasena.text.toString()
 
+        binding.btnIngresar.isEnabled = false
         viewLifecycleOwner.lifecycleScope.launch {
-            val usuario = app.database.usuarioDao().findByCorreo(correo)
-            if (usuario == null || !usuario.activo || usuario.contrasenaHash != Seguridad.hash(contrasena)) {
-                binding.tilContrasena.error = getString(R.string.login_error)
-                return@launch
+            try {
+                auth.iniciarSesion(correo, contrasena)
+                requireContext().abrirComoInicio(MainActivity::class.java)
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                binding.btnIngresar.isEnabled = true
+                Toast.makeText(requireContext(), mensajeDeError(e), Toast.LENGTH_LONG).show()
             }
-            app.session.iniciar(usuario)
-            startActivity(
-                Intent(requireContext(), PanelActivity::class.java)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            )
         }
     }
 
