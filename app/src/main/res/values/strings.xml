@@ -12,10 +12,8 @@
     <string name="menu_contactos">Contactos</string>
     <string name="menu_login">Login</string>
 
-    <string name="inicio_titulo">Bienvenido a Hannah Lab</string>
     <string name="nosotros_titulo">Quiénes somos</string>
     <string name="contactos_titulo">Contáctanos</string>
-    <string name="login_titulo">Iniciar sesión</string>
     <string name="planilla_titulo">Planilla por horas</string>
 
     <string name="login_bienvenido">Bienvenido a EcoApp</string>
@@ -98,7 +96,6 @@
     <string name="planilla_descuento">Descuento ONP (13 %)</string>
     <string name="planilla_neto">Salario neto</string>
 
-    <string name="perfil_titulo">Perfil</string>
     <string name="rol_admin">Administrador</string>
     <string name="rol_developer">Developer</string>
     <string name="perfil_cargo">Cargo</string>
@@ -205,6 +202,4 @@
     <string name="contacto_sin_app">No hay una app instalada para abrir esto</string>
     <string name="error_telefono">Teléfono no válido</string>
     <string name="error_mensaje_corto">Escribe al menos 10 caracteres</string>
-
-    <string name="placeholder_parrafo">Contenido en construcción.</string>
 </resources>

@@ -2,7 +2,6 @@ package com.hannahlab.ecoapp.data.local
 
 import com.hannahlab.ecoapp.data.local.entity.RegistroHoras
 import com.hannahlab.ecoapp.data.local.entity.Usuario
-import com.hannahlab.ecoapp.util.Seguridad
 import java.time.DayOfWeek
 import java.time.LocalDate
 import kotlin.random.Random
@@ -34,22 +33,22 @@ object SeedData {
     private fun usuarios() = listOf(
         Usuario(
             nombre = "Admin Hannah", correo = "admin@ecoapp.test",
-            contrasenaHash = Seguridad.hash("admin123"), rol = Usuario.ROL_ADMIN,
+            contrasenaHash = "", rol = Usuario.ROL_ADMIN,
             cargo = "Líder técnico", tarifaHora = 35.0, metaHoras = 160.0,
         ),
         Usuario(
             nombre = "Ana Torres", correo = "ana@ecoapp.test",
-            contrasenaHash = Seguridad.hash("dev123"), rol = Usuario.ROL_DEVELOPER,
+            contrasenaHash = "", rol = Usuario.ROL_DEVELOPER,
             cargo = "Desarrolladora frontend", tarifaHora = 25.0, metaHoras = 160.0,
         ),
         Usuario(
             nombre = "Luis Ramos", correo = "luis@ecoapp.test",
-            contrasenaHash = Seguridad.hash("dev123"), rol = Usuario.ROL_DEVELOPER,
+            contrasenaHash = "", rol = Usuario.ROL_DEVELOPER,
             cargo = "Desarrollador backend", tarifaHora = 28.0, metaHoras = 160.0,
         ),
         Usuario(
             nombre = "Carla Vega", correo = "carla@ecoapp.test",
-            contrasenaHash = Seguridad.hash("dev123"), rol = Usuario.ROL_DEVELOPER,
+            contrasenaHash = "", rol = Usuario.ROL_DEVELOPER,
             cargo = "Diseñadora UX/UI", tarifaHora = 22.0, metaHoras = 120.0,
         ),
     )
