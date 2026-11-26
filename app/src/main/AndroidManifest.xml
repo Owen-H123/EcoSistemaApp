@@ -26,10 +26,18 @@
         </activity>
 
         <activity
-            android:name=".ui.welcome.WelcomeActivity"
+            android:name=".ui.acceso.LoginActivity"
             android:exported="false"
             android:screenOrientation="portrait"
-            android:theme="@style/Theme.EcoApp.Welcome" />
+            android:theme="@style/Theme.EcoApp.Splash"
+            android:windowSoftInputMode="adjustResize" />
+
+        <activity
+            android:name=".ui.registro.RegistroActivity"
+            android:exported="false"
+            android:screenOrientation="portrait"
+            android:theme="@style/Theme.EcoApp.Splash"
+            android:windowSoftInputMode="adjustResize" />
 
         <activity
             android:name=".ui.main.MainActivity"

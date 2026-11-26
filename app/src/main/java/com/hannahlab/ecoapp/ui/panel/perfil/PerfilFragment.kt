@@ -11,8 +11,9 @@ import androidx.lifecycle.repeatOnLifecycle
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.databinding.FragmentPerfilBinding
 import com.hannahlab.ecoapp.ecoApp
+import com.hannahlab.ecoapp.ui.acceso.LoginActivity
+import com.hannahlab.ecoapp.ui.acceso.abrirComoInicio
 import com.hannahlab.ecoapp.ui.trabajador.TrabajadorFormActivity
-import com.hannahlab.ecoapp.ui.welcome.WelcomeActivity
 import com.hannahlab.ecoapp.util.Formato
 import kotlinx.coroutines.flow.filterNotNull
 import kotlinx.coroutines.launch
@@ -34,11 +35,8 @@ class PerfilFragment : Fragment(R.layout.fragment_perfil) {
             startActivity(Intent(requireContext(), TrabajadorFormActivity::class.java))
         }
         binding.btnCerrarSesion.setOnClickListener {
-            app.session.cerrar()
-            startActivity(
-                Intent(requireContext(), WelcomeActivity::class.java)
-                    .addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK)
-            )
+            app.auth.cerrarSesion()
+            requireContext().abrirComoInicio(LoginActivity::class.java)
         }
 
         viewLifecycleOwner.lifecycleScope.launch {

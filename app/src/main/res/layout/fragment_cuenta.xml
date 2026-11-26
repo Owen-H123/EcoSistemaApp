@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/eco_negro"
+    android:fillViewport="true">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:gravity="center_horizontal"
+            android:orientation="vertical"
+            android:padding="32dp">
+
+            <TextView
+                android:id="@+id/tv_inicial"
+                style="@style/Avatar"
+                android:layout_width="96dp"
+                android:layout_height="96dp"
+                android:textSize="40sp" />
+
+            <TextView
+                android:id="@+id/tv_nombre"
+                style="@style/TextoTitulo.Claro"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp" />
+
+            <TextView
+                android:id="@+id/tv_rol"
+                style="@style/EtiquetaPanel"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/eco_lima" />
+
+            <TextView
+                android:id="@+id/tv_correo"
+                style="@style/TextoParrafo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="4dp"
+                android:textColor="@color/eco_texto_claro" />
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_card_superior"
+            android:orientation="vertical"
+            android:padding="24dp">
+
+            <TextView
+                style="@style/TextoParrafo"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/cuenta_texto" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btn_panel"
+                style="@style/BotonPrimario"
+                android:layout_width="match_parent"
+                android:layout_marginTop="24dp"
+                android:text="@string/cuenta_ir_panel" />
+        </LinearLayout>
+    </LinearLayout>
+</ScrollView>
