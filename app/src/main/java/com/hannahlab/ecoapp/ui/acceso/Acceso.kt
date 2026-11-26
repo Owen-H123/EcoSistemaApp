@@ -15,10 +15,23 @@ import com.google.firebase.firestore.FirebaseFirestoreException
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.data.auth.CuentaInactivaException
 import com.hannahlab.ecoapp.data.auth.PerfilNoDisponibleException
+import com.hannahlab.ecoapp.data.repository.SinRespuestaException
 
 /** Abre una pantalla borrando las anteriores, para que "atrás" no regrese al login ni a una sesión cerrada. */
 fun Context.abrirComoInicio(destino: Class<out Activity>) {
     startActivity(Intent(this, destino).addFlags(Intent.FLAG_ACTIVITY_NEW_TASK or Intent.FLAG_ACTIVITY_CLEAR_TASK))
+}
+
+/** Aviso para un error al leer o guardar datos en Firestore. */
+@StringRes
+fun mensajeDeDatos(error: Exception): Int {
+    if (error !is FirebaseFirestoreException) return mensajeDeError(error)
+    Log.w("Datos", "Error de Firestore", error)
+    return if (error.code == FirebaseFirestoreException.Code.PERMISSION_DENIED) {
+        R.string.error_permiso
+    } else {
+        R.string.error_general
+    }
 }
 
 /** Traduce un error de Firebase al aviso que ve el usuario. */
@@ -31,7 +44,8 @@ fun mensajeDeError(error: Exception): Int {
         is FirebaseAuthInvalidCredentialsException,
         is FirebaseAuthInvalidUserException -> R.string.login_error
         is FirebaseAuthUserCollisionException -> R.string.error_correo_duplicado
-        is FirebaseNetworkException -> R.string.error_conexion
+        is FirebaseNetworkException,
+        is SinRespuestaException -> R.string.error_conexion
         is FirebaseTooManyRequestsException -> R.string.error_intentos
         is PerfilNoDisponibleException,
         is FirebaseFirestoreException -> R.string.error_perfil

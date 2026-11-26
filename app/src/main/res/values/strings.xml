@@ -190,7 +190,9 @@
     <string name="contacto_enviar">Enviar</string>
     <string name="contacto_enviar_correo">Enviar por correo</string>
     <string name="contacto_guardado">Mensaje enviado correctamente</string>
-    <string name="contacto_registrados">Mensajes enviados desde este dispositivo: %1$d</string>
+    <string name="contacto_registrados">Mensajes que has enviado: %1$d</string>
+    <string name="aviso_pendiente">Sin conexión. Se enviará cuando vuelva internet</string>
+    <string name="error_permiso">No tienes permiso para esta acción</string>
     <string name="contacto_sin_app">No hay una app instalada para abrir esto</string>
     <string name="error_telefono">Teléfono no válido</string>
     <string name="error_mensaje_corto">Escribe al menos 10 caracteres</string>

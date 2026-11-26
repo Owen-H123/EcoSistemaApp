@@ -5,16 +5,70 @@ rules_version = '2';
 service cloud.firestore {
   match /databases/{database}/documents {
 
+    function haySesion() {
+      return request.auth != null;
+    }
+
+    function esAdmin() {
+      return haySesion()
+        && get(/databases/$(database)/documents/usuarios/$(request.auth.uid)).data.rol == 'ADMIN';
+    }
+
+    function fichaValida() {
+      let campos = ['nombre', 'cargo', 'tarifaHora', 'metaHoras', 'activo'];
+      let ficha = request.resource.data;
+      return ficha.keys().hasOnly(campos) && ficha.keys().hasAll(campos)
+        && ficha.nombre is string
+        && ficha.cargo is string
+        && ficha.tarifaHora is number && ficha.tarifaHora >= 0
+        && ficha.metaHoras is number && ficha.metaHoras > 0
+        && ficha.activo is bool;
+    }
+
     // Perfil de cada cuenta: solo su dueño lo lee y lo crea.
     // El rol siempre nace como trabajador; el de administrador se asigna desde la consola.
     match /usuarios/{uid} {
-      allow read: if request.auth != null && request.auth.uid == uid;
+      allow read: if haySesion() && request.auth.uid == uid;
 
-      allow create: if request.auth != null && request.auth.uid == uid
+      allow create: if haySesion() && request.auth.uid == uid
         && request.resource.data.keys().hasOnly(['nombre', 'correo', 'rol', 'creadoEn'])
         && request.resource.data.nombre is string
         && request.resource.data.correo == request.auth.token.email
         && request.resource.data.rol == 'DEVELOPER';
+
+      allow update, delete: if false;
+    }
+
+    // Ficha del trabajador (cargo, tarifa y meta). El admin gestiona todas;
+    // cada trabajador lee la suya y solo puede crearla sin tarifa.
+    match /trabajadores/{correo} {
+      allow read: if haySesion() && (request.auth.token.email == correo || esAdmin());
+
+      allow create: if fichaValida()
+        && (esAdmin()
+          || (haySesion() && request.auth.token.email == correo
+            && request.resource.data.tarifaHora <= 0
+            && request.resource.data.activo == true));
+
+      allow update: if fichaValida() && esAdmin();
+
+      allow delete: if false;
+    }
+
+    // Formulario de contacto: cada cuenta envía y ve sus mensajes; el admin ve todos.
+    match /mensajes/{id} {
+      allow read: if haySesion() && (resource.data.uid == request.auth.uid || esAdmin());
+
+      allow create: if haySesion()
+        && request.resource.data.uid == request.auth.uid
+        && request.resource.data.keys().hasOnly(
+             ['nombre', 'correo', 'telefono', 'asunto', 'mensaje', 'uid', 'creadoEn'])
+        && request.resource.data.nombre is string
+        && request.resource.data.correo is string
+        && request.resource.data.asunto is string
+        && request.resource.data.mensaje is string
+        && request.resource.data.mensaje.size() >= 10
+        && request.resource.data.mensaje.size() <= 5000;
 
       allow update, delete: if false;
     }

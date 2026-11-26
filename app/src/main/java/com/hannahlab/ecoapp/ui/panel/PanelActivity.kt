@@ -1,16 +1,23 @@
 package com.hannahlab.ecoapp.ui.panel
 
 import android.os.Bundle
+import android.widget.Toast
 import androidx.appcompat.app.AppCompatActivity
+import androidx.lifecycle.Lifecycle
+import androidx.lifecycle.lifecycleScope
+import androidx.lifecycle.repeatOnLifecycle
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.databinding.ActivityPanelBinding
 import com.hannahlab.ecoapp.ecoApp
 import com.hannahlab.ecoapp.ui.acceso.LoginActivity
 import com.hannahlab.ecoapp.ui.acceso.abrirComoInicio
+import com.hannahlab.ecoapp.ui.acceso.mensajeDeDatos
 import com.hannahlab.ecoapp.ui.panel.analisis.AnalisisFragment
 import com.hannahlab.ecoapp.ui.panel.inicio.PanelInicioFragment
 import com.hannahlab.ecoapp.ui.panel.perfil.PerfilFragment
 import com.hannahlab.ecoapp.ui.panel.planilla.PlanillaFragment
+import kotlinx.coroutines.CancellationException
+import kotlinx.coroutines.launch
 
 /** Zona privada del trabajador: Inicio, Análisis, Planilla y Perfil. El contenido cambia según el rol. */
 class PanelActivity : AppCompatActivity() {
@@ -34,6 +41,25 @@ class PanelActivity : AppCompatActivity() {
         binding.bottomNav.setOnItemReselectedListener { }
 
         if (savedInstanceState == null) showSection(R.id.panel_inicio)
+        mantenerFichasAlDia()
+    }
+
+    /** Mientras el panel está a la vista, trae de Firestore los cambios en cargos y tarifas. */
+    private fun mantenerFichasAlDia() {
+        val usuarioId = ecoApp.session.usuarioId ?: return
+        lifecycleScope.launch {
+            ecoApp.trabajadores.preparar(usuarioId)
+            repeatOnLifecycle(Lifecycle.State.STARTED) {
+                try {
+                    ecoApp.trabajadores.sincronizar(usuarioId)
+                } catch (e: CancellationException) {
+                    throw e
+                } catch (e: Exception) {
+                    // Las pantallas siguen con la última copia local
+                    Toast.makeText(this@PanelActivity, mensajeDeDatos(e), Toast.LENGTH_LONG).show()
+                }
+            }
+        }
     }
 
     private fun showSection(itemId: Int) {

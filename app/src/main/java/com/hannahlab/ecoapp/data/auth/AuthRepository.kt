@@ -1,5 +1,6 @@
 package com.hannahlab.ecoapp.data.auth
 
+import android.util.Log
 import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.auth.FirebaseUser
 import com.google.firebase.auth.UserProfileChangeRequest
@@ -7,7 +8,9 @@ import com.google.firebase.firestore.FieldValue
 import com.google.firebase.firestore.FirebaseFirestore
 import com.hannahlab.ecoapp.data.local.dao.UsuarioDao
 import com.hannahlab.ecoapp.data.local.entity.Usuario
+import com.hannahlab.ecoapp.data.repository.TrabajadoresRepository
 import com.hannahlab.ecoapp.data.session.SessionManager
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.withTimeoutOrNull
 
 /** El perfil no se pudo leer ni crear en Firestore a tiempo. */
@@ -24,6 +27,7 @@ class CuentaInactivaException : Exception()
 class AuthRepository(
     private val usuarioDao: UsuarioDao,
     private val session: SessionManager,
+    private val trabajadores: TrabajadoresRepository,
 ) {
     private val auth by lazy { FirebaseAuth.getInstance().apply { setLanguageCode("es") } }
     private val perfiles by lazy { FirebaseFirestore.getInstance().collection(COLECCION_USUARIOS) }
@@ -63,9 +67,21 @@ class AuthRepository(
             val usuario = enlazarUsuarioLocal(perfil)
             if (!usuario.activo) throw CuentaInactivaException()
             session.iniciar(usuario)
+            registrarFicha(usuario)
         } catch (e: Exception) {
             cerrarSesion()
             throw e
+        }
+    }
+
+    /** Hace visible al trabajador en la planilla. No impide entrar: el panel lo reintenta. */
+    private suspend fun registrarFicha(usuario: Usuario) {
+        try {
+            withTimeoutOrNull(ESPERA_FICHA_MS) { trabajadores.asegurarFicha(usuario) }
+        } catch (e: CancellationException) {
+            throw e
+        } catch (e: Exception) {
+            Log.w("Acceso", "No se pudo crear la ficha del trabajador", e)
         }
     }
 
@@ -108,9 +124,9 @@ class AuthRepository(
             correo = perfil.correo,
             contrasenaHash = "", // La contraseña la guarda Firebase Authentication
             rol = perfil.rol,
-            cargo = CARGO_POR_DEFECTO,
+            cargo = Usuario.CARGO_POR_DEFECTO,
             tarifaHora = 0.0,
-            metaHoras = META_POR_DEFECTO,
+            metaHoras = Usuario.META_POR_DEFECTO,
         )
         return nuevo.copy(id = usuarioDao.insert(nuevo))
     }
@@ -120,7 +136,6 @@ class AuthRepository(
     private companion object {
         const val COLECCION_USUARIOS = "usuarios"
         const val ESPERA_PERFIL_MS = 15_000L
-        const val CARGO_POR_DEFECTO = "Por asignar"
-        const val META_POR_DEFECTO = 160.0
+        const val ESPERA_FICHA_MS = 5_000L
     }
 }

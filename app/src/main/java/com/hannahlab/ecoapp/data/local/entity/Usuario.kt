@@ -22,5 +22,9 @@ data class Usuario(
     companion object {
         const val ROL_ADMIN = "ADMIN"
         const val ROL_DEVELOPER = "DEVELOPER"
+
+        /** Valores de una cuenta recién creada, hasta que el admin complete su ficha. */
+        const val CARGO_POR_DEFECTO = "Por asignar"
+        const val META_POR_DEFECTO = 160.0
     }
 }

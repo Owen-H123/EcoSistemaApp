@@ -24,6 +24,9 @@ object SeedData {
         db.registroHorasDao().insertAll(registros)
     }
 
+    /** Correos de los trabajadores de demostración (sin el admin). */
+    fun correosDeTrabajadores(): List<String> = usuarios().filterNot { it.esAdmin }.map { it.correo }
+
     private fun usuarios() = listOf(
         Usuario(
             nombre = "Admin Hannah", correo = "admin@ecoapp.test",
