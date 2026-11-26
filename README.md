@@ -82,7 +82,7 @@ app/src/main/java/com/hannahlab/ecoapp/
 │   ├── local/                Room: entidades, DAOs, AppDatabase y SeedData
 │   ├── repository/           Fichas, horas y mensajes de contacto en Firestore
 │   └── session/              Sesión del usuario (SharedPreferences)
-├── util/                     Fechas, formato de moneda, cálculo de planilla y hash
+├── util/                     Fechas, formato de moneda y cálculo de planilla
 └── ui/
     ├── splash/  acceso/  registro/  recuperar/
     ├── main/                 Menú lateral y sus Fragments
