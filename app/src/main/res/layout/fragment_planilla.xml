@@ -36,7 +36,7 @@
                 android:id="@+id/tv_total"
                 style="@style/ValorPanel"
                 android:textColor="@color/eco_lima"
-                android:textSize="36sp" />
+                android:textSize="28sp" />
         </LinearLayout>
 
         <LinearLayout
@@ -64,7 +64,7 @@
                 android:layout_marginTop="16dp"
                 android:text="@string/planilla_nota"
                 android:textColor="@color/eco_texto_suave"
-                android:textSize="12sp" />
+                style="@style/TextoParrafo" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

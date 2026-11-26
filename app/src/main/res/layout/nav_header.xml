@@ -1,11 +1,12 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="176dp"
+    android:layout_height="wrap_content"
     android:background="@color/eco_negro"
-    android:gravity="bottom"
     android:orientation="vertical"
-    android:padding="16dp">
+    android:paddingHorizontal="16dp"
+    android:paddingTop="40dp"
+    android:paddingBottom="16dp">
 
     <ImageView
         android:layout_width="64dp"
@@ -14,17 +15,16 @@
         android:src="@drawable/logo_hannah_oscuro" />
 
     <TextView
+        style="@style/TextoTitulo.Claro"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="@string/empresa_nombre"
-        android:textColor="@color/blanco"
-        android:textSize="20sp"
-        android:textStyle="bold" />
+        android:layout_marginTop="8dp"
+        android:text="@string/empresa_nombre" />
 
     <TextView
+        style="@style/TextoParrafo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/empresa_lema"
-        android:textColor="@color/eco_lima"
-        android:textSize="14sp" />
+        android:textColor="@color/eco_lima" />
 </LinearLayout>

@@ -46,6 +46,17 @@
         <item name="android:textColor">@color/eco_texto_suave</item>
     </style>
 
+    <!-- Título de la barra superior y opciones del menú lateral, a la misma escala -->
+    <style name="TituloBarra" parent="TextAppearance.Material3.TitleLarge">
+        <item name="android:textSize">28sp</item>
+        <item name="android:fontFamily">@font/oswald_400</item>
+    </style>
+
+    <style name="TextoMenu" parent="TextAppearance.Material3.LabelLarge">
+        <item name="android:textSize">24sp</item>
+        <item name="android:fontFamily">@font/inter_500</item>
+    </style>
+
     <!-- Nombre de marca (logotipo), más grande que un título normal -->
     <style name="TextoMarca" parent="TextoTitulo">
         <item name="android:textSize">56sp</item>
@@ -59,7 +70,8 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">20dp</item>
         <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">30sp</item>
         <item name="android:fontFamily">@font/oswald_500</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.06</item>
@@ -87,7 +99,9 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_gravity">center_horizontal</item>
         <item name="android:padding">8dp</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:gravity">center</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">30sp</item>
         <item name="android:fontFamily">@font/oswald_500</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.05</item>
@@ -96,8 +110,8 @@
 
     <style name="BotonPrimario" parent="Widget.Material3.Button">
         <item name="android:layout_width">240dp</item>
-        <item name="android:layout_height">56dp</item>
-        <item name="android:textSize">18sp</item>
+        <item name="android:layout_height">64dp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">@font/oswald_500</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.05</item>
@@ -117,7 +131,8 @@
     <style name="EtiquetaPanel">
         <item name="android:layout_width">wrap_content</item>
         <item name="android:layout_height">wrap_content</item>
-        <item name="android:textSize">12sp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">30sp</item>
         <item name="android:fontFamily">@font/oswald_500</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.08</item>
@@ -133,7 +148,8 @@
     </style>
 
     <style name="ValorTarjeta" parent="ValorPanel">
-        <item name="android:textSize">22sp</item>
+        <item name="android:textSize">24sp</item>
+        <item name="lineHeight">30sp</item>
         <item name="android:textColor">@color/eco_texto</item>
     </style>
 
@@ -142,7 +158,7 @@
         <item name="android:layout_height">wrap_content</item>
         <item name="android:layout_marginTop">24dp</item>
         <item name="android:layout_marginBottom">8dp</item>
-        <item name="android:textSize">16sp</item>
+        <item name="android:textSize">28sp</item>
         <item name="android:fontFamily">@font/oswald_500</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:letterSpacing">0.06</item>
@@ -151,11 +167,14 @@
 
     <style name="ToggleEco" parent="Widget.Material3.Button.OutlinedButton">
         <item name="android:layout_width">0dp</item>
-        <item name="android:layout_height">48dp</item>
+        <item name="android:layout_height">56dp</item>
         <item name="android:layout_weight">1</item>
         <item name="android:insetTop">0dp</item>
         <item name="android:insetBottom">0dp</item>
-        <item name="android:textSize">15sp</item>
+        <item name="android:minWidth">0dp</item>
+        <item name="android:paddingStart">4dp</item>
+        <item name="android:paddingEnd">4dp</item>
+        <item name="android:textSize">24sp</item>
         <item name="android:fontFamily">@font/oswald_500</item>
         <item name="android:textAllCaps">true</item>
         <item name="android:textColor">@color/eco_negro</item>
