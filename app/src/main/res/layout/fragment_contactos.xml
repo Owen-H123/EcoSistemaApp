@@ -52,6 +52,22 @@
 
             <include android:id="@+id/dato_web" layout="@layout/item_dato_contacto" />
 
+            <!-- Mapa de la oficina (modo lite: no interfiere con el scroll) -->
+            <com.google.android.material.card.MaterialCardView
+                xmlns:app="http://schemas.android.com/apk/res-auto"
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeColor="@color/eco_borde"
+                app:strokeWidth="1dp">
+
+                <androidx.fragment.app.FragmentContainerView
+                    android:id="@+id/mapa_oficina"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent" />
+            </com.google.android.material.card.MaterialCardView>
+
             <TextView style="@style/TituloSeccion" android:text="@string/contacto_formulario" />
 
             <TextView style="@style/EtiquetaCampo" android:layout_marginTop="8dp" android:text="@string/contacto_nombre" />
@@ -63,7 +79,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textPersonName|textCapWords"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/login_correo" />
@@ -76,7 +93,8 @@
                     android:layout_height="wrap_content"
                     android:hint="@string/login_correo_hint"
                     android:inputType="textEmailAddress"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/contacto_telefono" />
@@ -88,7 +106,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/contacto_asunto" />
@@ -100,7 +119,8 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textCapSentences"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <TextView style="@style/EtiquetaCampo" android:text="@string/contacto_mensaje" />
@@ -114,7 +134,8 @@
                     android:gravity="top"
                     android:inputType="textMultiLine|textCapSentences"
                     android:minLines="4"
-                    android:textColor="@color/eco_texto" />
+                    android:textColor="@color/eco_texto"
+                    android:textSize="24sp" />
             </com.google.android.material.textfield.TextInputLayout>
 
             <com.google.android.material.button.MaterialButton
@@ -138,7 +159,7 @@
                 android:layout_marginTop="16dp"
                 android:gravity="center"
                 android:textColor="@color/eco_texto_suave"
-                android:textSize="13sp" />
+                style="@style/TextoParrafo" />
         </LinearLayout>
     </LinearLayout>
 </ScrollView>

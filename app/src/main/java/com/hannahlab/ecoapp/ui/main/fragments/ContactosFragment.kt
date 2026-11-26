@@ -1,7 +1,9 @@
 package com.hannahlab.ecoapp.ui.main.fragments
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
+import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
 import android.util.Patterns
@@ -13,6 +15,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Lifecycle
 import androidx.lifecycle.lifecycleScope
 import androidx.lifecycle.repeatOnLifecycle
+import com.google.android.gms.maps.CameraUpdateFactory
+import com.google.android.gms.maps.GoogleMap
+import com.google.android.gms.maps.GoogleMapOptions
+import com.google.android.gms.maps.SupportMapFragment
+import com.google.android.gms.maps.model.CameraPosition
+import com.google.android.gms.maps.model.LatLng
+import com.google.android.gms.maps.model.MarkerOptions
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.hannahlab.ecoapp.R
@@ -21,7 +30,10 @@ import com.hannahlab.ecoapp.data.repository.LocalContactoRepository
 import com.hannahlab.ecoapp.databinding.FragmentContactosBinding
 import com.hannahlab.ecoapp.databinding.ItemDatoContactoBinding
 import com.hannahlab.ecoapp.ecoApp
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.io.IOException
 
 /** Datos públicos de contacto y formulario que guarda el mensaje en la base local. */
 class ContactosFragment : Fragment(R.layout.fragment_contactos) {
@@ -35,7 +47,7 @@ class ContactosFragment : Fragment(R.layout.fragment_contactos) {
 
         val correoEmpresa = getString(R.string.contacto_correo)
         configurarDato(binding.datoDireccion, R.drawable.ic_ubicacion, R.string.contacto_direccion_label, R.string.contacto_direccion) {
-            abrir(Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(getString(R.string.contacto_direccion)))))
+            abrirDireccion()
         }
         configurarDato(binding.datoCorreo, R.drawable.ic_correo, R.string.contacto_correo_label, R.string.contacto_correo) {
             abrir(Intent(Intent.ACTION_SENDTO, Uri.parse("mailto:$correoEmpresa")))
@@ -43,6 +55,8 @@ class ContactosFragment : Fragment(R.layout.fragment_contactos) {
         configurarDato(binding.datoWeb, R.drawable.ic_web, R.string.contacto_web_label, R.string.contacto_web) {
             abrir(Intent(Intent.ACTION_VIEW, Uri.parse("https://" + getString(R.string.contacto_web))))
         }
+
+        mostrarMapa()
 
         val app = requireContext().ecoApp
         val repositorio = LocalContactoRepository(app.database.mensajeContactoDao())
@@ -91,6 +105,55 @@ class ContactosFragment : Fragment(R.layout.fragment_contactos) {
         dato.tvLabel.setText(label)
         dato.tvValor.setText(valor)
         dato.root.setOnClickListener { onClick() }
+    }
+
+    /** Agrega el mapa en modo lite; al tocarlo abre la dirección en la app de mapas. */
+    private fun mostrarMapa() {
+        val mapa = childFragmentManager.findFragmentById(R.id.mapa_oficina) as? SupportMapFragment
+            ?: SupportMapFragment.newInstance(
+                GoogleMapOptions()
+                    .liteMode(true)
+                    .camera(CameraPosition.fromLatLngZoom(CENTRO_SAN_ISIDRO, ZOOM_DISTRITO)),
+            ).also {
+                childFragmentManager.beginTransaction().replace(R.id.mapa_oficina, it).commit()
+            }
+
+        mapa.getMapAsync { googleMap ->
+            if (_binding == null) return@getMapAsync
+            googleMap.uiSettings.isMapToolbarEnabled = false
+            googleMap.setOnMapClickListener { abrirDireccion() }
+            marcarOficina(googleMap)
+        }
+    }
+
+    /** Ubica la oficina a partir de su dirección; si no se encuentra, queda la vista del distrito. */
+    private fun marcarOficina(googleMap: GoogleMap) {
+        val contexto = requireContext().applicationContext
+        val direccion = getString(R.string.contacto_direccion)
+        viewLifecycleOwner.lifecycleScope.launch {
+            val posicion = buscarCoordenadas(contexto, direccion) ?: return@launch
+            googleMap.addMarker(
+                MarkerOptions().position(posicion).title(getString(R.string.empresa_nombre)).snippet(direccion),
+            )
+            googleMap.moveCamera(CameraUpdateFactory.newLatLngZoom(posicion, ZOOM_OFICINA))
+        }
+    }
+
+    // La versión asíncrona de Geocoder recién existe desde API 33 y la app admite API 26.
+    @Suppress("DEPRECATION")
+    private suspend fun buscarCoordenadas(contexto: Context, direccion: String): LatLng? =
+        withContext(Dispatchers.IO) {
+            try {
+                Geocoder(contexto).getFromLocationName(direccion, 1)
+                    ?.firstOrNull()
+                    ?.let { LatLng(it.latitude, it.longitude) }
+            } catch (e: IOException) {
+                null
+            }
+        }
+
+    private fun abrirDireccion() {
+        abrir(Intent(Intent.ACTION_VIEW, Uri.parse("geo:0,0?q=" + Uri.encode(getString(R.string.contacto_direccion)))))
     }
 
     /** Valida el formulario; devuelve el mensaje listo o null si hay errores. */
@@ -145,5 +208,12 @@ class ContactosFragment : Fragment(R.layout.fragment_contactos) {
     override fun onDestroyView() {
         _binding = null
         super.onDestroyView()
+    }
+
+    private companion object {
+        /** Vista inicial aproximada del distrito; el marcador sale de la dirección. */
+        val CENTRO_SAN_ISIDRO = LatLng(-12.097, -77.036)
+        const val ZOOM_DISTRITO = 13f
+        const val ZOOM_OFICINA = 16f
     }
 }

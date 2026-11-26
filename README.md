@@ -12,7 +12,7 @@ Aplicación Android nativa en **Kotlin** para **Hannah Lab**, empresa peruana de
 - **Bienvenida** con acceso como invitado o con inicio de sesión.
 - **Inicio**: presentación de la empresa y sus seis líneas de servicio.
 - **Nosotros**: forma de trabajo, valores y fortalezas.
-- **Contactos**: oficina, correo y web (abren Maps, la app de correo y el navegador) y formulario con validación que guarda el mensaje en la base local.
+- **Contactos**: oficina, correo y web (abren Maps, la app de correo y el navegador), mapa con la ubicación de la oficina y formulario con validación que guarda el mensaje en la base local.
 - **Login** y **recuperar contraseña**.
 
 **Panel del trabajador** (después de iniciar sesión)
@@ -33,16 +33,19 @@ La planilla se calcula por horas: `bruto = horas × tarifa`, menos un descuento 
 - Room (SQLite) con KSP para la base local
 - Coroutines y Flow
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) para los gráficos
+- Maps SDK para Android (modo lite) para el mapa de Contactos
+- Firebase (Authentication y Firestore): librerías conectadas; el login y los datos todavía usan la base local
 - Fuentes Oswald e Inter incluidas en `res/font`
 
 Versiones: Android Gradle Plugin 8.11, Kotlin 2.1, Gradle 8.14, `minSdk` 26, `targetSdk` 36.
 
 ## Cómo ejecutarla
 
-1. Clonar el repositorio.
+1. Clonar el repositorio y copiar en `app/` el archivo `google-services.json` de un proyecto de Firebase con una app Android de paquete `com.hannahlab.ecoapp`. No está en el repositorio y sin él la app no compila.
 2. Abrir la carpeta en **Android Studio** (File → Open).
 3. Esperar a que termine la sincronización de Gradle. Si Android Studio ofrece actualizar Gradle o el plugin de Android, no lo aceptes: las versiones del proyecto ya son compatibles entre sí.
-4. Elegir un emulador o un teléfono con depuración USB y presionar **Run**.
+4. Para ver el mapa, agregar en `local.properties` la línea `MAPS_API_KEY=tu_clave`, con una clave de **Maps SDK for Android** restringida al paquete `com.hannahlab.ecoapp` y a la huella SHA-1 del certificado con el que se firma la app. Sin la clave, la app compila, pero el mapa no carga.
+5. Elegir un emulador o un teléfono con depuración USB (con servicios de Google Play) y presionar **Run**.
 
 También desde la terminal, con un emulador abierto:
 

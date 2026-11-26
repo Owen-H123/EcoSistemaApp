@@ -8,3 +8,5 @@
 .externalNativeBuild
 .cxx
 /app/build
+# Configuración de Firebase de cada proyecto: el repositorio es público
+/app/google-services.json
