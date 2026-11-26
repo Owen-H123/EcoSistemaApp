@@ -15,7 +15,7 @@ Aplicación Android nativa en **Kotlin** para **Hannah Lab**, empresa peruana de
 
 - **Inicio**: presentación de la empresa y sus seis líneas de servicio.
 - **Nosotros**: forma de trabajo, valores y fortalezas.
-- **Contactos**: oficina, correo y web (abren Maps, la app de correo y el navegador), mapa con la ubicación de la oficina y formulario con validación que guarda el mensaje en la base local.
+- **Contactos**: oficina, correo y web (abren Maps, la app de correo y el navegador), mapa con la ubicación de la oficina y formulario con validación que guarda el mensaje en Firestore.
 - **Login**: la cuenta con la sesión iniciada y el acceso al panel.
 - **Cerrar sesión**: vuelve a la pantalla de Login.
 
@@ -25,8 +25,8 @@ Aplicación Android nativa en **Kotlin** para **Hannah Lab**, empresa peruana de
 | --- | --- | --- |
 | Inicio | Sus horas del mes, neto estimado, avance contra su meta y sus registros (hoy, semana, mes) | Horas y planilla de todo el equipo, y los registros de cada persona |
 | Análisis | Gráfico de sus horas por semana contra la meta y horas por proyecto | Lo mismo para el equipo, con filtro por persona y horas por persona |
-| Planilla | Su cálculo de salario | Planilla de todos; puede editar la tarifa de cada trabajador |
-| Perfil | Sus datos y cerrar sesión | Además, alta de nuevos trabajadores |
+| Planilla | Su cálculo de salario | Planilla de todos; puede editar la tarifa de cada trabajador (se guarda en Firestore) |
+| Perfil | Sus datos y cerrar sesión | Además, alta de nuevos trabajadores, con su cuenta y contraseña |
 
 La planilla se calcula por horas: `bruto = horas × tarifa`, menos un descuento referencial de 13 % (ONP).
 
@@ -38,7 +38,7 @@ La planilla se calcula por horas: `bruto = horas × tarifa`, menos un descuento 
 - Coroutines y Flow
 - [MPAndroidChart](https://github.com/PhilJay/MPAndroidChart) para los gráficos
 - Maps SDK para Android (modo lite) para el mapa de Contactos
-- Firebase Authentication para las cuentas y Firestore para el perfil de cada usuario. Las horas, la planilla y los mensajes de contacto todavía usan la base local
+- Firebase Authentication para las cuentas y Firestore para perfiles (`usuarios`), fichas de trabajadores (`trabajadores`) y mensajes de contacto (`mensajes`). Las horas todavía usan la base local, que además guarda una copia de las fichas
 - Fuentes Oswald e Inter incluidas en `res/font`
 
 Versiones: Android Gradle Plugin 8.11, Kotlin 2.1, Gradle 8.14, `minSdk` 26, `targetSdk` 36.
@@ -66,6 +66,8 @@ También desde la terminal, con un emulador abierto:
 
 Cada persona crea la suya con **Registrarse** y empieza como trabajador. Para convertirla en administrador: en Firestore, colección `usuarios`, cambiar su campo `rol` a `ADMIN` y volver a iniciar sesión.
 
+El administrador crea trabajadores desde **Perfil → Nuevo trabajador** y, al abrir el panel, sube a Firestore las fichas de demostración que falten.
+
 La base local trae datos de demostración. Una cuenta registrada con uno de estos correos ve sus horas: `ana@ecoapp.test`, `luis@ecoapp.test`, `carla@ecoapp.test`.
 
 Para volver a los datos iniciales: Ajustes → Apps → EcoApp Hannah → Almacenamiento → Borrar datos.
@@ -78,7 +80,7 @@ app/src/main/java/com/hannahlab/ecoapp/
 ├── data/
 │   ├── auth/                 Cuentas con Firebase Authentication y perfil en Firestore
 │   ├── local/                Room: entidades, DAOs, AppDatabase y SeedData
-│   ├── repository/           Acceso a datos del formulario de contacto
+│   ├── repository/           Fichas de trabajadores y mensajes de contacto en Firestore
 │   └── session/              Sesión del usuario (SharedPreferences)
 ├── util/                     Fechas, formato de moneda, cálculo de planilla y hash
 └── ui/

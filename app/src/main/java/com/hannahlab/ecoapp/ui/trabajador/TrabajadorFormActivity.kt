@@ -1,6 +1,5 @@
 package com.hannahlab.ecoapp.ui.trabajador
 
-import android.database.sqlite.SQLiteConstraintException
 import android.os.Bundle
 import android.util.Patterns
 import android.widget.Toast
@@ -8,14 +7,16 @@ import androidx.appcompat.app.AppCompatActivity
 import androidx.lifecycle.lifecycleScope
 import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
+import com.google.firebase.auth.FirebaseAuthUserCollisionException
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.data.local.entity.Usuario
 import com.hannahlab.ecoapp.databinding.ActivityTrabajadorFormBinding
 import com.hannahlab.ecoapp.ecoApp
-import com.hannahlab.ecoapp.util.Seguridad
+import com.hannahlab.ecoapp.ui.acceso.mensajeDeDatos
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.launch
 
-/** Alta de un developer. Solo el admin entra aquí (las cuentas no se crean desde el login). */
+/** Alta de un developer con su cuenta y su ficha. Solo el admin entra aquí. */
 class TrabajadorFormActivity : AppCompatActivity() {
 
     private lateinit var binding: ActivityTrabajadorFormBinding
@@ -60,23 +61,30 @@ class TrabajadorFormActivity : AppCompatActivity() {
         ).all { it }
         if (!valido) return
 
+        val nuevo = Usuario(
+            nombre = nombre,
+            correo = correo,
+            contrasenaHash = "", // La contraseña la guarda Firebase Authentication
+            rol = Usuario.ROL_DEVELOPER,
+            cargo = cargo,
+            tarifaHora = tarifa!!,
+            metaHoras = meta!!,
+        )
+
+        binding.btnGuardar.isEnabled = false
         lifecycleScope.launch {
             try {
-                ecoApp.database.usuarioDao().insert(
-                    Usuario(
-                        nombre = nombre,
-                        correo = correo,
-                        contrasenaHash = Seguridad.hash(contrasena),
-                        rol = Usuario.ROL_DEVELOPER,
-                        cargo = cargo,
-                        tarifaHora = tarifa!!,
-                        metaHoras = meta!!,
-                    )
-                )
+                ecoApp.trabajadores.crear(nuevo, contrasena)
                 Toast.makeText(this@TrabajadorFormActivity, R.string.trabajador_creado, Toast.LENGTH_SHORT).show()
                 finish()
-            } catch (e: SQLiteConstraintException) {
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: FirebaseAuthUserCollisionException) {
+                binding.btnGuardar.isEnabled = true
                 binding.tilCorreo.error = getString(R.string.error_correo_duplicado)
+            } catch (e: Exception) {
+                binding.btnGuardar.isEnabled = true
+                Toast.makeText(this@TrabajadorFormActivity, mensajeDeDatos(e), Toast.LENGTH_LONG).show()
             }
         }
     }

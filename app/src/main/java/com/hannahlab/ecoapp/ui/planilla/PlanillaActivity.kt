@@ -11,9 +11,11 @@ import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.data.local.entity.Usuario
 import com.hannahlab.ecoapp.databinding.ActivityPlanillaBinding
 import com.hannahlab.ecoapp.ecoApp
+import com.hannahlab.ecoapp.ui.acceso.mensajeDeDatos
 import com.hannahlab.ecoapp.util.CalculoPlanilla
 import com.hannahlab.ecoapp.util.Fechas
 import com.hannahlab.ecoapp.util.Formato
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.flow.first
 import kotlinx.coroutines.launch
 import java.util.Locale
@@ -86,12 +88,22 @@ class PlanillaActivity : AppCompatActivity() {
     private fun guardarTarifa() {
         val tarifa = leerTarifa() ?: return
         val actual = usuario ?: return
+        binding.btnGuardar.isEnabled = false
         lifecycleScope.launch {
-            val actualizado = actual.copy(tarifaHora = tarifa)
-            ecoApp.database.usuarioDao().update(actualizado)
-            usuario = actualizado
-            calcular()
-            Toast.makeText(this@PlanillaActivity, R.string.planilla_guardada, Toast.LENGTH_SHORT).show()
+            try {
+                val actualizado = actual.copy(tarifaHora = tarifa)
+                val confirmado = ecoApp.trabajadores.guardar(actualizado)
+                usuario = actualizado
+                calcular()
+                val aviso = if (confirmado) R.string.planilla_guardada else R.string.aviso_pendiente
+                Toast.makeText(this@PlanillaActivity, aviso, Toast.LENGTH_SHORT).show()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                Toast.makeText(this@PlanillaActivity, mensajeDeDatos(e), Toast.LENGTH_LONG).show()
+            } finally {
+                binding.btnGuardar.isEnabled = true
+            }
         }
     }
 

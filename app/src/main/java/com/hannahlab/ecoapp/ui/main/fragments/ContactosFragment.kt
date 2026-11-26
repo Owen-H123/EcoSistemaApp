@@ -6,6 +6,7 @@ import android.content.Intent
 import android.location.Geocoder
 import android.net.Uri
 import android.os.Bundle
+import android.util.Log
 import android.util.Patterns
 import android.view.View
 import android.widget.Toast
@@ -26,16 +27,19 @@ import com.google.android.material.textfield.TextInputEditText
 import com.google.android.material.textfield.TextInputLayout
 import com.hannahlab.ecoapp.R
 import com.hannahlab.ecoapp.data.local.entity.MensajeContacto
-import com.hannahlab.ecoapp.data.repository.LocalContactoRepository
+import com.hannahlab.ecoapp.data.repository.ContactoRepository
+import com.hannahlab.ecoapp.data.repository.FirestoreContactoRepository
 import com.hannahlab.ecoapp.databinding.FragmentContactosBinding
 import com.hannahlab.ecoapp.databinding.ItemDatoContactoBinding
-import com.hannahlab.ecoapp.ecoApp
+import com.hannahlab.ecoapp.ui.acceso.mensajeDeDatos
+import kotlinx.coroutines.CancellationException
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.flow.catch
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
 import java.io.IOException
 
-/** Datos públicos de contacto y formulario que guarda el mensaje en la base local. */
+/** Datos públicos de contacto, mapa de la oficina y formulario que guarda el mensaje en Firestore. */
 class ContactosFragment : Fragment(R.layout.fragment_contactos) {
 
     private var _binding: FragmentContactosBinding? = null
@@ -58,16 +62,11 @@ class ContactosFragment : Fragment(R.layout.fragment_contactos) {
 
         mostrarMapa()
 
-        val app = requireContext().ecoApp
-        val repositorio = LocalContactoRepository(app.database.mensajeContactoDao())
+        val repositorio: ContactoRepository = FirestoreContactoRepository()
 
         binding.btnEnviar.setOnClickListener {
             val mensaje = leerFormulario() ?: return@setOnClickListener
-            viewLifecycleOwner.lifecycleScope.launch {
-                repositorio.enviar(mensaje)
-                Toast.makeText(requireContext(), R.string.contacto_guardado, Toast.LENGTH_SHORT).show()
-                limpiarFormulario()
-            }
+            enviar(repositorio, mensaje)
         }
         binding.btnEnviarCorreo.setOnClickListener {
             val mensaje = leerFormulario() ?: return@setOnClickListener
@@ -87,10 +86,30 @@ class ContactosFragment : Fragment(R.layout.fragment_contactos) {
 
         viewLifecycleOwner.lifecycleScope.launch {
             viewLifecycleOwner.repeatOnLifecycle(Lifecycle.State.STARTED) {
-                app.database.mensajeContactoDao().observeAll().collect { mensajes ->
-                    binding.tvRegistrados.text = getString(R.string.contacto_registrados, mensajes.size)
-                }
+                repositorio.contarEnviados()
+                    // Es solo un dato informativo: si no se puede leer, no se muestra
+                    .catch { Log.w("Contactos", "No se pudo contar los mensajes", it) }
+                    .collect { cantidad ->
+                        binding.tvRegistrados.text = getString(R.string.contacto_registrados, cantidad)
+                    }
             }
+        }
+    }
+
+    private fun enviar(repositorio: ContactoRepository, mensaje: MensajeContacto) {
+        binding.btnEnviar.isEnabled = false
+        viewLifecycleOwner.lifecycleScope.launch {
+            try {
+                val confirmado = repositorio.enviar(mensaje)
+                val aviso = if (confirmado) R.string.contacto_guardado else R.string.aviso_pendiente
+                Toast.makeText(requireContext(), aviso, Toast.LENGTH_SHORT).show()
+                limpiarFormulario()
+            } catch (e: CancellationException) {
+                throw e
+            } catch (e: Exception) {
+                Toast.makeText(requireContext(), mensajeDeDatos(e), Toast.LENGTH_LONG).show()
+            }
+            binding.btnEnviar.isEnabled = true
         }
     }
 
